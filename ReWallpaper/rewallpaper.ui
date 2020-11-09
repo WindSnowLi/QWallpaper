@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReWallpaperClass</class>
+ <widget class="QMainWindow" name="ReWallpaperClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>654</width>
+    <height>388</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>楷体</family>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>QtWallpaper</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/ReWallpaper/Resources/DynamicWallpaper.ico</normaloff>:/ReWallpaper/Resources/DynamicWallpaper.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:transparent;</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextBesideIcon</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLineEdit" name="filename">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+font: 25 9pt;
+color:rgb(190, 255, 37);
+border:1px solid rgb(180, 180, 180);
+border-radius: 4px;
+background:transparent;
+border-width:2;
+border-style:outset
+}
+QLineEdit::hover
+{
+font: 25 9pt &quot;微软雅黑 Light&quot;;
+border:1px solid rgb(180, 180, 180);
+border-radius: 4px;
+background:transparent;
+border-width:2;
+border-style:outset
+}
+QLineEdit::disabled
+{
+font: 25 9pt;
+color:rgb(190, 255, 37);
+border:1px solid rgb(180, 180, 180);
+border-radius: 4px;
+background:transparent;
+border-width:2;
+border-style:outset
+}
+</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="selectfile">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>50</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择视频文件&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:rgb(158, 184, 255);
+border-style:outset;           
+border-width:4px;
+border-radius:10px;
+border-color:rgba(255,255,255,30);    
+font:bold 15px;
+color:rgb(9, 9, 9);     
+padding:6px;                         
+}
+QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+}
+QPushButton:hover{
+background-color:rgb(187, 223, 255);
+border-color:rgba(255,255,255,200);
+color:rgba(0,0,0,200);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>选择文件</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="endplay">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>50</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;结束播放&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:rgb(158, 184, 255);
+border-style:outset;           
+border-width:4px;
+border-radius:10px;
+border-color:rgba(255,255,255,30);    
+font:bold 15px;
+color:rgba(9,9,9);            
+padding:6px;                         
+}
+QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+}
+QPushButton:hover{
+background-color:rgb(187, 223, 255);
+border-color:rgba(255,255,255,200);
+color:rgba(0,0,0,200);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>结束播放</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ripple">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>150</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;开启水波纹特效&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator { 
+    width: 40px;
+    height: 100px;
+}
+QCheckBox::indicator::unchecked {   
+    image: url(:/ico/Resources/double_close.png);
+}
+QCheckBox::indicator::checked { 
+    image: url(:/ico/Resources/double_open.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>150</y>
+      <width>61</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>水波纹</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="rippleSlidHz">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>110</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;滑动产生水波的频率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #4A708B;
+background: #C0C0C0;
+height: 7px;
+border-radius: 3px;
+padding-left:0px;
+padding-right:0px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+    stop:0 #B1B1B1, stop:1 #c4c4c4);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #5DCCFF, stop: 1 #1874CD);
+border: 1px solid #4A708B;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::add-page:horizontal {
+background: #575757;
+border: 1px solid #ffffff;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::handle:horizontal 
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, 
+    stop:0.6 rgb(10, 87, 255), stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA, 
+    stop:0.778409 rgb(76, 5, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #00009C;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>1</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="volumeSlider">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>130</y>
+      <width>31</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;视频音量&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:vertical {
+border: 2px solid #4A708B;
+background: #C0C0C0;
+width: 7px;
+border-radius: 3px;
+padding-left:-1px;
+padding-right:-1px;
+padding-top:-3px;
+padding-bottom:0px;
+}
+
+QSlider::sub-page:vertical {
+background: #575757;
+border: 1px solid #4A708B;
+border-radius: 2px;
+}
+
+QSlider::add-page:vertical {
+background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+    stop:0 #c4c4c4, stop:1 #B1B1B1);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #5DCCFF, stop: 1 #1874CD);
+border: 0px solid #777;
+width: 10px;
+border-radius: 2px;
+}
+
+QSlider::handle:vertical 
+{
+	background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.6 #45ADED, 
+stop:0.778409 rgba(255, 255, 255, 255));
+
+    height: 11px;
+    margin-left: -3px;
+    margin-right: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #00009C;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="volume">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>310</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>100</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>水波频率</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showSlidHz">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>100</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>showSlidHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showVolume">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>90</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>showVolume</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showSlidStrength">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>150</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>showSlidStrength</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSlider" name="rippleSlidStrength">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;滑动产生水波的力度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #4A708B;
+background: #C0C0C0;
+height: 7px;
+border-radius: 3px;
+padding-left:0px;
+padding-right:0px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+    stop:0 #B1B1B1, stop:1 #c4c4c4);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #5DCCFF, stop: 1 #1874CD);
+border: 1px solid #4A708B;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::add-page:horizontal {
+background: #575757;
+border: 1px solid #ffffff;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::handle:horizontal 
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, 
+    stop:0.6 rgb(10, 87, 255), stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA, 
+    stop:0.778409 rgb(76, 5, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #00009C;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>滑动力度</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="loopplayer">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>100</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;循环播放&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator { 
+    width: 40px;
+    height: 100px;
+}
+QCheckBox::indicator::unchecked {   
+    image: url(:/ico/Resources/double_close.png);
+}
+QCheckBox::indicator::checked { 
+    image: url(:/ico/Resources/double_open.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>100</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>循环播放</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cleanplayertable">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>270</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;清空历史播放记录&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:rgb(158, 184, 255);
+border-style:outset;           
+border-width:4px;
+border-radius:10px;
+border-color:rgba(255,255,255,30);    
+font:bold 15px;
+color:rgb(9, 9, 9);     
+padding:6px;                         
+}
+QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+}
+QPushButton:hover{
+background-color:rgb(187, 223, 255);
+border-color:rgba(255,255,255,200);
+color:rgba(0,0,0,200);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>清空播放列表</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="rippleClickStrength">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>210</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;滑动产生水波的力度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #4A708B;
+background: #C0C0C0;
+height: 7px;
+border-radius: 3px;
+padding-left:0px;
+padding-right:0px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+    stop:0 #B1B1B1, stop:1 #c4c4c4);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #5DCCFF, stop: 1 #1874CD);
+border: 1px solid #4A708B;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::add-page:horizontal {
+background: #575757;
+border: 1px solid #ffffff;
+height: 10px;
+border-radius: 2px;
+}
+
+QSlider::handle:horizontal 
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, 
+    stop:0.6 rgb(10, 87, 255), stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA, 
+    stop:0.778409 rgb(76, 5, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #00009C;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showClickStrength">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>200</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>showSlidStrength</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>200</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>点击力度</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="SetAutoStart">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>210</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;开启水波纹特效&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator { 
+    width: 40px;
+    height: 100px;
+}
+QCheckBox::indicator::unchecked {   
+    image: url(:/ico/Resources/double_close.png);
+}
+QCheckBox::indicator::checked { 
+    image: url(:/ico/Resources/double_open.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>210</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 251, 106)</string>
+    </property>
+    <property name="text">
+     <string>开机自启</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="rewallpaper.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>selectfile</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SelectFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>416</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>492</x>
+     <y>13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>endplay</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>EndPlay()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripple</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>Ripple()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>420</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>volumeSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetPlayerVolume(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>533</x>
+     <y>135</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rippleSlidHz</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetSlidRippleHz(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>171</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>203</x>
+     <y>57</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rippleSlidStrength</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetSlidRippleStrength(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>135</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>152</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cleanplayertable</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>CleanPlayerTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>396</x>
+     <y>251</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rippleClickStrength</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetClickRippleStrength(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>193</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loopplayer</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetLoopPlay()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>351</x>
+     <y>93</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>330</x>
+     <y>68</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SetAutoStart</sender>
+   <signal>clicked()</signal>
+   <receiver>ReWallpaperClass</receiver>
+   <slot>SetAutoStart()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>346</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>328</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>SelectFile()</slot>
+  <slot>EndPlay()</slot>
+  <slot>Ripple()</slot>
+  <slot>SetPlayerVolume(int)</slot>
+  <slot>SetSlidRippleHz(int)</slot>
+  <slot>SetSlidRippleStrength(int)</slot>
+  <slot>CleanPlayerTable()</slot>
+  <slot>SetClickRippleStrength(int)</slot>
+  <slot>SetLoopPlay()</slot>
+  <slot>SetAutoStart()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{19138828-667D-4B8E-8912-71570FA7A93F}</ProjectGuid>
+    <Keyword>QtVS_v302</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <ProjectName>QWallpaper</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\boost_1_70_0;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;E:\Desktop\VSProject\QWallpaper\include;$(IncludePath)</IncludePath>
+    <ReferencePath>E:\Desktop\VSProject\QWallpaper\lib;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\Qt\5.14.2\msvc2017_64\lib;D:\boost_1_70_0\lib;E:\Desktop\VSProject\QWallpaper\lib;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>E:\Desktop\VSProject\QWallpaper\lib\runtimelib;$(LibraryWPath)</LibraryWPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;D:\boost_1_70_0;E:\Desktop\VSProject\QWallpaper\include;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;E:\Desktop\VSProject\QWallpaper\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\Qt\5.14.2\msvc2017_64\lib;D:\boost_1_70_0\lib;E:\Desktop\VSProject\QWallpaper\lib;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>E:\Desktop\VSProject\QWallpaper\lib\runtimelib;$(LibraryWPath)</LibraryWPath>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>5.14.2</QtInstall>
+    <QtModules>core;gui;webchannel;widgets</QtModules>
+    <QtHeaderSearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;$(QtHeaderSearchPath)</QtHeaderSearchPath>
+    <QtLibrarySearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(QtLibrarySearchPath)</QtLibrarySearchPath>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>5.14.2</QtInstall>
+    <QtModules>core;gui;webchannel;widgets</QtModules>
+    <QtHeaderSearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;$(QtHeaderSearchPath)</QtHeaderSearchPath>
+    <QtLibrarySearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(QtLibrarySearchPath)</QtLibrarySearchPath>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\Desktop\VSProject\QWallpaper\include;E:\Desktop\VSProject\QWallpaper\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\Desktop\VSProject\QWallpaper\lib;E:\Desktop\VSProject\QWallpaper\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="globalvariable.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mythread.cpp" />
+    <ClCompile Include="rewallpaper.cpp" />
+    <ClCompile Include="SingleApplication.cpp" />
+    <ClCompile Include="tool.cpp" />
+    <ClCompile Include="videoplayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="rewallpaper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="rewallpaper.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="rewallpaper.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globalvariable.h" />
+    <QtMoc Include="mythread.h" />
+    <ClInclude Include="ReadWriteini.h" />
+    <ClInclude Include="resource.h" />
+    <QtMoc Include="SingleApplication.h" />
+    <ClInclude Include="tool.h" />
+    <ClInclude Include="videoplayer.h" />
+    <ClInclude Include="x64\Debug\uic\ui_rewallpaper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ReWallpaper.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\DynamicWallpaper.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

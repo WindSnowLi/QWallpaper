@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>Resources/DynamicWallpaper.ico</file>
+        <file>Resources/double_close.png</file>
+        <file>Resources/double_open.png</file>
+        <file>Resources/Single_close.png</file>
+        <file>Resources/Single_open.png</file>
+        <file>Resources/background.jpg</file>
+        <file>Resources/sound.jpg</file>
+        <file>Resources/menu_exit.ico</file>
+    </qresource>
+    <qresource prefix="/png/volume">
+        <file>Resources/down_arrow.ico</file>
+        <file>Resources/up_arrow.ico</file>
+    </qresource>
+    <qresource prefix="/png/background">
+        <file>Resources/no_border_background.png</file>
+    </qresource>
+</RCC>

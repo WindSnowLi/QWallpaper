@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="17">
+<write_target_object class_id="0" tracking_level="0" version="0">
+	<count>2</count>
+	<item_version>0</item_version>
+	<item>F:\bilibili\MP4\2b小姐姐尼尔.mp4</item>
+	<item>F:\bilibili\MP4\6.mp4</item>
+</write_target_object>
+</boost_serialization>
+

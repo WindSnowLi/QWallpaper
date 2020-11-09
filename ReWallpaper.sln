@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReWallpaper", "ReWallpaper\ReWallpaper.vcxproj", "{19138828-667D-4B8E-8912-71570FA7A93F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19138828-667D-4B8E-8912-71570FA7A93F}.Debug|x64.ActiveCfg = Debug|x64
+		{19138828-667D-4B8E-8912-71570FA7A93F}.Debug|x64.Build.0 = Debug|x64
+		{19138828-667D-4B8E-8912-71570FA7A93F}.Release|x64.ActiveCfg = Release|x64
+		{19138828-667D-4B8E-8912-71570FA7A93F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F82D2DAA-EA9F-4FEF-9D4D-832D6296745A}
+	EndGlobalSection
+EndGlobal
