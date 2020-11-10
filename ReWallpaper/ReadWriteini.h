@@ -29,9 +29,16 @@ namespace rwini {
 	protected:
 		std::string message;
 	public:
+#ifdef  _MSC_VER
 		virtual const char* what() const {
 			return message.c_str();
 		}
+#elif	__GNUC__
+		virtual const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
+		{
+			return message.c_str();
+		}
+#endif //  _MSC_VER||__BORLANDC__
 		virtual const rwini::RwExceptionType GetExceptionType() const {
 			return RwExceptionType::RwiniException;
 		}
@@ -41,7 +48,7 @@ namespace rwini {
 	{
 	public:
 
-		const rwini::RwExceptionType RwExceptionType() const {
+		virtual const rwini::RwExceptionType GetExceptionType() const {
 			return RwExceptionType::NotFoundKey;
 		}
 		NotFoundKey() { this->message = "Error : 没有发现指定Key"; }
@@ -54,7 +61,7 @@ namespace rwini {
 	class NotFoundSection : public RwiniException
 	{
 	public:
-		const rwini::RwExceptionType RwExceptionType() const {
+		virtual const rwini::RwExceptionType GetExceptionType() const {
 			return RwExceptionType::NotFoundSection;
 		}
 		NotFoundSection() { this->message = "Error : 没有发现指定Section"; }
@@ -66,7 +73,7 @@ namespace rwini {
 	class NullSectionOrKey : public RwiniException
 	{
 	public:
-		const rwini::RwExceptionType RwExceptionType() const {
+		virtual const rwini::RwExceptionType GetExceptionType() const {
 			return RwExceptionType::NullSectionOrKey;
 		}
 		NullSectionOrKey(std::string str) { this->message = "Error : " + str + "参数为空"; }
@@ -74,7 +81,7 @@ namespace rwini {
 	class IniFormatError : public RwiniException
 	{
 	public:
-		const rwini::RwExceptionType RwExceptionType() const {
+		virtual const rwini::RwExceptionType GetExceptionType() const {
 			return RwExceptionType::IniFormatError;
 		}
 		IniFormatError() { this->message = "Error : 文件格式错误"; }
@@ -227,7 +234,15 @@ noexcept(false)
 	{
 		tempiter = SeekKey(section, key);
 	}
-	catch (const rwini::RwiniException& e)
+	catch (const rwini::NullSectionOrKey& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundSection& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundKey& e)
 	{
 		throw e;
 	}
@@ -253,7 +268,15 @@ noexcept(false)
 	{
 		tempiter = SeekKey(section, key);
 	}
-	catch (const std::exception& e)
+	catch (const rwini::NullSectionOrKey& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundSection& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundKey& e)
 	{
 		throw e;
 	}
@@ -414,7 +437,15 @@ noexcept(false)
 		auto iter = SeekSection(section);
 		iniContent->erase(iter);
 	}
-	catch (const std::exception& e)
+	catch (const rwini::NullSectionOrKey& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundSection& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundKey& e)
 	{
 		throw e;
 	}
@@ -439,7 +470,15 @@ bool rwini::ReadWriteini::DeleteKey(const Type1& tempsection, const Type2& tempk
 		auto tempiter = iter->second.find(key);
 		iter->second.erase(tempiter);
 	}
-	catch (const std::exception& e)
+	catch (const rwini::NullSectionOrKey& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundSection& e)
+	{
+		throw e;
+	}
+	catch (const rwini::NotFoundKey& e)
 	{
 		throw e;
 	}

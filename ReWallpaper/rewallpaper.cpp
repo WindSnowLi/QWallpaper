@@ -6,7 +6,6 @@
 #include "tool.h"
 #include <Qfile>
 #include <QFileDialog>
-#include <QDebug>
 #include <WinUser.h>
 #include <fstream>
 #include <QtWinExtras/qwinfunctions.h>
@@ -15,13 +14,16 @@
 #include <qthread.h>
 #include <atlimage.h>
 #include <qpalette.h>
-#include <QMessageBox>
 #include <QSettings>
 #include <QCoreApplication>
 #include <unordered_map>
 #include <memory>
+#include <iostream>
+#include <QMessageBox>
 #pragma comment (lib, "CRIPPLE.lib")
 #pragma comment (lib, "Qt5WinExtrasd.lib")
+
+
 /*
 *┌────────────────────────────────────────────────┐
 *│　描    述：初始胡播放器目标窗口句柄
@@ -433,20 +435,19 @@ void ReWallpaper::ToLoadProgramItem()
 	program_config_file_path += "\\config.ini";
 	std::shared_ptr<rwini::ReadWriteini> RWini = std::make_shared<rwini::ReadWriteini>(program_config_file_path.toStdString().c_str());
 	auto ini_table = std::make_shared<std::vector<std::string>>();
-	ini_table->push_back("VideoPlayerVolume");
-	ini_table->push_back("SlidHz");
 	ini_table->push_back("SlidStrength");
+	ini_table->push_back("SlidHz");
 	ini_table->push_back("ClickStrength");
-	ini_table->push_back("LoopPlay");
 	ini_table->push_back("LineNumber");
-
+	ini_table->push_back("VideoPlayerVolume");
+	ini_table->push_back("LoopPlay");
 
 	int* p_initable[6];
-	//水波滑动力度     初始化后实际为*20
+	//水波滑动力度
 	p_initable[0] = &global::rippleSlidStrength;
-	//水波滑动频率,,本结果为1000/实际频率    所得
+	//水波滑动频率
 	p_initable[1] = &global::rippleSlidHz;
-	//水波点击力度	初始化后实际为*20
+	//水波点击力度
 	p_initable[2] = &global::rippleClickStrength;
 	//当前视频所在目录的行数
 	p_initable[3] = &global::lineNumber;
@@ -466,11 +467,16 @@ void ReWallpaper::ToLoadProgramItem()
 		}
 		catch (const rwini::RwiniException& e)
 		{
-			RWini->AutoInsertKey("program", i, 0);
-			*p_initable[initable_list] = 0;
+			if (e.GetExceptionType() == rwini::RwExceptionType::NotFoundKey ||
+				e.GetExceptionType() == rwini::RwExceptionType::NotFoundSection)
+			{
+				RWini->AutoInsertKey("program", i, 0);
+				*p_initable[initable_list] = 0;
+			}
 		}
 		initable_list++;
-		if (initable_list > 5) {
+		if (initable_list > 5) 
+		{
 			break;
 		}
 
@@ -707,7 +713,7 @@ void ReWallpaper::closeEvent(QCloseEvent* event)
 	std::string temp_section = "program";
 	auto ini_table = std::make_shared<std::unordered_map<std::string, int>>();
 	ini_table->insert(std::make_pair("VideoPlayerVolume", global::playerVolume));
-	ini_table->insert(std::make_pair("SlidHz", 1000 / global::rippleSlidHz));
+	ini_table->insert(std::make_pair("SlidHz", (int)(1/(global::rippleSlidHz*1.0 / 1000))));
 	ini_table->insert(std::make_pair("SlidStrength", global::rippleSlidStrength / 20));
 	ini_table->insert(std::make_pair("ClickStrength", global::rippleClickStrength / 20));
 	ini_table->insert(std::make_pair("LoopPlay", global::loopPlay));
@@ -715,15 +721,15 @@ void ReWallpaper::closeEvent(QCloseEvent* event)
 	for (auto&& i : *ini_table) {
 		try
 		{
-			RWini->SetKey(temp_section, i.first, i.second);
+			RWini->SetValue(temp_section, i.first, i.second);
 		}
-		catch (const rwini::NotFoundKey& e)
+		catch (const rwini::RwiniException& e)
 		{
-			RWini->AutoInsertKey(temp_section, i.first, i.second);
-		}
-		catch (const rwini::NotFoundSection& e)
-		{
-			RWini->AutoInsertKey(temp_section, i.first, i.second);
+			if (e.GetExceptionType() == rwini::RwExceptionType::NotFoundKey ||
+				e.GetExceptionType() == rwini::RwExceptionType::NotFoundSection)
+			{
+				RWini->AutoInsertKey(temp_section, i.first, i.second);
+			}
 		}
 	}
 	RWini->Writeini();
