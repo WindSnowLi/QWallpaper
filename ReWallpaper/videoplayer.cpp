@@ -83,6 +83,7 @@ bool VideoPlayer::set_position(float position)
 
 bool VideoPlayer::set_stop() {
 	if (mp != NULL) {
+		libvlc_media_player_play(mp);
 		libvlc_media_player_pause(mp);
 	}
 	return true;
@@ -91,6 +92,22 @@ bool VideoPlayer::set_stop() {
 bool VideoPlayer::set_play() {
 	if (mp != NULL) {
 		libvlc_media_player_play(mp);
+	}
+	return true;
+}
+
+bool VideoPlayer::getPlayingStatus() {
+	if (mp == NULL) {
+		return false;
+	}
+	return libvlc_media_player_is_playing(mp);
+}
+
+
+bool VideoPlayer::getVideoStatus()
+{
+	if (mp == NULL) {
+		return false;
 	}
 	return true;
 }

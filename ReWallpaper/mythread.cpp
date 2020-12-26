@@ -26,6 +26,7 @@ void MyThread::PauseThread()
 
 void MyThread::ContinueThread()
 {
+	this->toTryLock();
 	m_mutex.unlock();
 }
 

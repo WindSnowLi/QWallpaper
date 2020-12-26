@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QSystemTrayIcon>
 #include <qmenu.h>
+#include <memory>
 class ReWallpaper : public QMainWindow
 {
 	Q_OBJECT
@@ -56,6 +57,10 @@ private slots:
 	void ActiveTray(QSystemTrayIcon::ActivationReason reason);
 	//循环播放
 	void SetLoopPlay();
+	//暂停播放
+	void setPausePlay();
+	//继续播放
+	void setContinuePlay();
 private:
 	//原窗口背景
 	QPixmap  m_pixmap;
@@ -64,11 +69,15 @@ private:
 	//左键是否按下
 	bool m_bLeftBtnPress = false;
 	//托盘指针
-	QSystemTrayIcon* m_systemTray;
+	std::shared_ptr<QSystemTrayIcon> m_systemTray;
 	//托盘菜单
-	QMenu* m_menu;
-	//托盘功能条
-	QAction* m_action1;
+	std::shared_ptr < QMenu> m_menu;
+	//托盘退出
+	std::shared_ptr<QAction> m_menu_exit;
+	//托盘暂停
+	std::shared_ptr<QAction> m_menu_pause;
+	//托盘播放
+	std::shared_ptr<QAction> m_menu_playing;
 protected:
 	void mouseMoveEvent(QMouseEvent* event);
 	void mousePressEvent(QMouseEvent* event);

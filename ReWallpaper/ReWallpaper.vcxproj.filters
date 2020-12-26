@@ -84,7 +84,7 @@
     <ClInclude Include="tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReadWriteini.h">
+    <ClInclude Include="ReadWriteini.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
