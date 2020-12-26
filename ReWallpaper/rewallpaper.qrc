@@ -6,8 +6,10 @@
         <file>Resources/Single_close.png</file>
         <file>Resources/Single_open.png</file>
         <file>Resources/background.jpg</file>
-        <file>Resources/sound.jpg</file>
         <file>Resources/menu_exit.ico</file>
+        <file>Resources/pause.png</file>
+        <file>Resources/playing.png</file>
+        <file>Resources/sound.ico</file>
     </qresource>
     <qresource prefix="/png/volume">
         <file>Resources/down_arrow.ico</file>

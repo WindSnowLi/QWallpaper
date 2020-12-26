@@ -2,7 +2,7 @@
 #include "rewallpaper.h"
 #include "videoplayer.h"
 #include "globalvariable.h"
-#include "ReadWriteini.h"
+#include "ReadWriteini.hpp"
 #include "tool.h"
 #include <Qfile>
 #include <QFileDialog>
@@ -107,7 +107,6 @@ ReWallpaper::ReWallpaper(QWidget* parent)
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-
 ReWallpaper::~ReWallpaper()
 {
 	//退出程序时执行一次壁纸还原指令
@@ -475,7 +474,7 @@ void ReWallpaper::ToLoadProgramItem()
 			}
 		}
 		initable_list++;
-		if (initable_list > 5) 
+		if (initable_list > 5)
 		{
 			break;
 		}
@@ -627,21 +626,39 @@ void ReWallpaper::InitializeNoBorder()
 
 void ReWallpaper::InitializeTray()
 {
-	m_systemTray = new QSystemTrayIcon(this);
+	m_systemTray = std::make_shared <QSystemTrayIcon>(this);
 	m_systemTray->setIcon(QIcon(":/ico/Resources/DynamicWallpaper.ico"));
 	m_systemTray->setToolTip("壁纸");
 	m_systemTray->show();
 
 	//点击托盘，执行相应的动作
-	connect(m_systemTray, &QSystemTrayIcon::activated, this, &ReWallpaper::ActiveTray);
+	connect(m_systemTray.get(), &QSystemTrayIcon::activated, this, &ReWallpaper::ActiveTray);
+	//创建菜单
+	m_menu = std::make_shared<QMenu>(this);
+	//创建退出action
+	m_menu_exit = std::make_shared<QAction>(m_menu.get());
+	//设置退出action图标
+	m_menu_exit->setIcon(QIcon(":/ico/Resources/menu_exit.ico"));
+	//设置退出action文本
+	m_menu_exit->setText("退出");
+	//添加到菜单
+	m_menu->addAction(m_menu_exit.get());
+	//连接功能
+	connect(m_menu_exit.get(), &QAction::triggered, this, &QApplication::quit);
 
-	m_menu = new QMenu(this);
-	m_action1 = new QAction(m_menu);
-	m_action1->setIcon(QIcon(":/ico/Resources/menu_exit.ico"));
-	m_action1->setText("退出");
-	m_menu->addAction(m_action1);
-	connect(m_action1, &QAction::triggered, this, &QApplication::quit);
-	m_systemTray->setContextMenu(m_menu);
+	m_menu_pause = std::make_shared<QAction>(m_menu.get());
+	m_menu_pause->setIcon(QIcon(":/ico/Resources/pause.png"));
+	m_menu_pause->setText("暂停播放");
+	m_menu->addAction(m_menu_pause.get());
+
+	connect(m_menu_pause.get(), &QAction::triggered, this, &ReWallpaper::setPausePlay);
+	m_menu_playing = std::make_shared<QAction>(m_menu.get());
+	m_menu_playing->setIcon(QIcon(":/ico/Resources/playing.png"));
+	m_menu_playing->setText("继续播放");
+	m_menu->addAction(m_menu_playing.get());
+	connect(m_menu_playing.get(), &QAction::triggered, this, &ReWallpaper::setContinuePlay);
+	//设置托盘
+	m_systemTray->setContextMenu(m_menu.get());
 }
 
 
@@ -688,6 +705,23 @@ void ReWallpaper::SetLoopPlay()
 	}
 }
 
+void ReWallpaper::setPausePlay()
+{
+	if (videoPlayer->getPlayingStatus()) {
+		//尝试暂停循环播放线程
+		looplaybackobject->toTryLock();
+		videoPlayer->set_stop();
+	}
+}
+
+void ReWallpaper::setContinuePlay()
+{
+	if (videoPlayer->getVideoStatus() && !videoPlayer->getPlayingStatus()) {
+		looplaybackobject->ContinueThread();
+		videoPlayer->set_play();
+	}
+}
+
 /*
 *┌────────────────────────────────────────────────┐
 *│　描    述：关闭程序做的一些善后操作
@@ -713,7 +747,7 @@ void ReWallpaper::closeEvent(QCloseEvent* event)
 	std::string temp_section = "program";
 	auto ini_table = std::make_shared<std::unordered_map<std::string, int>>();
 	ini_table->insert(std::make_pair("VideoPlayerVolume", global::playerVolume));
-	ini_table->insert(std::make_pair("SlidHz", (int)(1/(global::rippleSlidHz*1.0 / 1000))));
+	ini_table->insert(std::make_pair("SlidHz", (int)(1 / (global::rippleSlidHz * 1.0 / 1000))));
 	ini_table->insert(std::make_pair("SlidStrength", global::rippleSlidStrength / 20));
 	ini_table->insert(std::make_pair("ClickStrength", global::rippleClickStrength / 20));
 	ini_table->insert(std::make_pair("LoopPlay", global::loopPlay));

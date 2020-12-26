@@ -24,6 +24,10 @@ public:
 	bool set_position(float position);
 	bool set_stop();
 	bool set_play();
+	//获取播放器是否存在
+	bool getVideoStatus();
+	//获取播放状态
+	bool getPlayingStatus();
 	HWND workerw;
 };
 //播放器对象
