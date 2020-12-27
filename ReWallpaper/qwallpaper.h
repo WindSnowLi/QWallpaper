@@ -7,13 +7,13 @@
 #include <QSystemTrayIcon>
 #include <qmenu.h>
 #include <memory>
-class ReWallpaper : public QMainWindow
+class QWallpaper : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	ReWallpaper(QWidget* parent = Q_NULLPTR);
-	~ReWallpaper();
+	QWallpaper(QWidget* parent = Q_NULLPTR);
+	~QWallpaper();
 private:
 	Ui::ReWallpaperClass ui;
 	//ÏµÍ³±ÚÖ½»º´æÇø

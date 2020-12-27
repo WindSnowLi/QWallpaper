@@ -1,5 +1,5 @@
 ﻿#pragma execution_character_set("UTF-8")
-#include "rewallpaper.h"
+#include "qwallpaper.h"
 #include "videoplayer.h"
 #include "globalvariable.h"
 #include "ReadWriteini.hpp"
@@ -54,13 +54,13 @@ BOOL CALLBACK EnumwindowProcFindDesktopwindow(HWND hwnd, LPARAM lparam) {
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QWidget *)
 *└────────────────────────────────────────────────┘
 */
 
-ReWallpaper::ReWallpaper(QWidget* parent)
+QWallpaper::QWallpaper(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -102,15 +102,15 @@ ReWallpaper::ReWallpaper(QWidget* parent)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-ReWallpaper::~ReWallpaper()
+QWallpaper::~QWallpaper()
 {
 	//退出程序时执行一次壁纸还原指令
-	ReWallpaper::EndPlay();
+	QWallpaper::EndPlay();
 	//清理视频循环播放线程
 	if (looplayback->isRunning()) {
 		looplaybackobject->closeThread();
@@ -142,13 +142,13 @@ ReWallpaper::~ReWallpaper()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::RestoresWallpaper()
+void QWallpaper::RestoresWallpaper()
 {
 	CopyFile(tool::QSTOCS(tool::GetSystemWallpaperPath()), L"./picture/systemwallpaper/systemwallpaper.jpg", FALSE);
 	QString tempWallpaperPathQStr = tool::GetProgramPath() + "\\picture\\systemwallpaper\\systemwallpaper.jpg";
@@ -166,13 +166,13 @@ void ReWallpaper::RestoresWallpaper()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::SelectFile() {
+void QWallpaper::SelectFile() {
 	QString filename;
 	//限定只能打开*.txt文件
 	filename = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr(
@@ -203,20 +203,20 @@ void ReWallpaper::SelectFile() {
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::EndPlay()
+void QWallpaper::EndPlay()
 {
 	//尝试终止循环播放线程
 	looplaybackobject->toTryLock();
 	//释放播放器
 	videoPlayer->releasePlayer();
 	//还原壁纸
-	ReWallpaper::RestoresWallpaper();
+	QWallpaper::RestoresWallpaper();
 }
 
 /*
@@ -227,13 +227,13 @@ void ReWallpaper::EndPlay()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::Ripple()
+void QWallpaper::Ripple()
 {
 	if (ui.ripple->isChecked()) {
 		rippleobject->toTryLock();
@@ -244,7 +244,7 @@ void ReWallpaper::Ripple()
 	{
 		g_Ripple->cancelTimer();
 		rippleobject->PauseThread();
-		ReWallpaper::RestoresWallpaper();
+		QWallpaper::RestoresWallpaper();
 	}
 }
 /*
@@ -255,13 +255,13 @@ void ReWallpaper::Ripple()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QString)
 *└────────────────────────────────────────────────┘
 */
 /*
-void ReWallpaper::SetMainWindowBackGround(QString picturePath)
+void QWallpaper::SetMainWindowBackGround(QString picturePath)
 {
 	QPixmap pixmap = QPixmap(picturePath).scaled(this->size());
 	QPalette palette(this->palette());
@@ -277,13 +277,13 @@ void ReWallpaper::SetMainWindowBackGround(QString picturePath)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(int)
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::SetPlayerVolume(int volume)
+void QWallpaper::SetPlayerVolume(int volume)
 {
 	//设置音量
 	videoPlayer->setVolume(volume);
@@ -300,13 +300,13 @@ void ReWallpaper::SetPlayerVolume(int volume)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(int)
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::SetSlidRippleHz(int hz)
+void QWallpaper::SetSlidRippleHz(int hz)
 {
 	//设置显示水波纹滑动频率示数
 	ui.showSlidHz->setText(QString::number(hz, 10));
@@ -321,12 +321,12 @@ void ReWallpaper::SetSlidRippleHz(int hz)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(int)
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::SetSlidRippleStrength(int strength)
+void QWallpaper::SetSlidRippleStrength(int strength)
 {
 	//设置显示水波纹滑动力度示数
 	ui.showSlidStrength->setText(QString::number(strength, 10));
@@ -342,13 +342,13 @@ void ReWallpaper::SetSlidRippleStrength(int strength)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(int)
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::SetClickRippleStrength(int strength)
+void QWallpaper::SetClickRippleStrength(int strength)
 {
 	//设置显示水波纹点击力度示数
 	ui.showClickStrength->setText(QString::number(strength, 10));
@@ -364,13 +364,13 @@ void ReWallpaper::SetClickRippleStrength(int strength)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::CleanPlayerTable()
+void QWallpaper::CleanPlayerTable()
 {
 	global::videoDirectory.clear();
 	global::lineNumber = 0;
@@ -384,12 +384,12 @@ void ReWallpaper::CleanPlayerTable()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::ToLoadProgramItem()
+void QWallpaper::ToLoadProgramItem()
 {
 	HWND hwnd_progman = ::FindWindow(L"Progman", NULL);
 	if (hwnd_progman == NULL) {
@@ -490,12 +490,12 @@ void ReWallpaper::ToLoadProgramItem()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::ToLoadProgramUI()
+void QWallpaper::ToLoadProgramUI()
 {
 	//设置任务栏图标
 	setWindowIcon(QIcon(":/ico/Resources/DynamicWallpaper.ico"));
@@ -548,12 +548,12 @@ void ReWallpaper::ToLoadProgramUI()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::InitializeThread()
+void QWallpaper::InitializeThread()
 {
 	//为创建视频循环播放做准备
 	looplaybackobject->moveToThread(looplayback);
@@ -584,13 +584,13 @@ void ReWallpaper::InitializeThread()
 *│　创建时间：2020/06/1
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::InitializeNoBorder()
+void QWallpaper::InitializeNoBorder()
 {
 	setObjectName("QtWallpaper");
 	//设置程序主窗口背景
@@ -618,13 +618,13 @@ void ReWallpaper::InitializeNoBorder()
 *│　创建时间：
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::InitializeTray()
+void QWallpaper::InitializeTray()
 {
 	m_systemTray = std::make_shared <QSystemTrayIcon>(this);
 	m_systemTray->setIcon(QIcon(":/ico/Resources/DynamicWallpaper.ico"));
@@ -632,7 +632,7 @@ void ReWallpaper::InitializeTray()
 	m_systemTray->show();
 
 	//点击托盘，执行相应的动作
-	connect(m_systemTray.get(), &QSystemTrayIcon::activated, this, &ReWallpaper::ActiveTray);
+	connect(m_systemTray.get(), &QSystemTrayIcon::activated, this, &QWallpaper::ActiveTray);
 	//创建菜单
 	m_menu = std::make_shared<QMenu>(this);
 	//创建退出action
@@ -651,12 +651,12 @@ void ReWallpaper::InitializeTray()
 	m_menu_pause->setText("暂停播放");
 	m_menu->addAction(m_menu_pause.get());
 
-	connect(m_menu_pause.get(), &QAction::triggered, this, &ReWallpaper::setPausePlay);
+	connect(m_menu_pause.get(), &QAction::triggered, this, &QWallpaper::setPausePlay);
 	m_menu_playing = std::make_shared<QAction>(m_menu.get());
 	m_menu_playing->setIcon(QIcon(":/ico/Resources/playing.png"));
 	m_menu_playing->setText("继续播放");
 	m_menu->addAction(m_menu_playing.get());
-	connect(m_menu_playing.get(), &QAction::triggered, this, &ReWallpaper::setContinuePlay);
+	connect(m_menu_playing.get(), &QAction::triggered, this, &QWallpaper::setContinuePlay);
 	//设置托盘
 	m_systemTray->setContextMenu(m_menu.get());
 }
@@ -664,7 +664,7 @@ void ReWallpaper::InitializeTray()
 
 
 
-void ReWallpaper::ActiveTray(QSystemTrayIcon::ActivationReason reason)
+void QWallpaper::ActiveTray(QSystemTrayIcon::ActivationReason reason)
 {
 	switch (reason)
 	{
@@ -687,13 +687,13 @@ void ReWallpaper::ActiveTray(QSystemTrayIcon::ActivationReason reason)
 *│　创建时间：2020/06/02
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::SetLoopPlay()
+void QWallpaper::SetLoopPlay()
 {
 	if (ui.loopplayer->isChecked()) {
 		global::loopPlay = 1;
@@ -705,7 +705,7 @@ void ReWallpaper::SetLoopPlay()
 	}
 }
 
-void ReWallpaper::setPausePlay()
+void QWallpaper::setPausePlay()
 {
 	if (videoPlayer->getPlayingStatus()) {
 		//尝试暂停循环播放线程
@@ -714,7 +714,7 @@ void ReWallpaper::setPausePlay()
 	}
 }
 
-void ReWallpaper::setContinuePlay()
+void QWallpaper::setContinuePlay()
 {
 	if (videoPlayer->getVideoStatus() && !videoPlayer->getPlayingStatus()) {
 		looplaybackobject->ContinueThread();
@@ -730,12 +730,12 @@ void ReWallpaper::setContinuePlay()
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QCloseEvent*)
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::closeEvent(QCloseEvent* event)
+void QWallpaper::closeEvent(QCloseEvent* event)
 {
 	//拼接配置文件路径
 	QString videoDirectory_config_file_path = tool::GetProgramPath() + "\\config\\videoDirectory.xml";
@@ -768,7 +768,7 @@ void ReWallpaper::closeEvent(QCloseEvent* event)
 	}
 	RWini->Writeini();
 	//恢复壁纸
-	ReWallpaper::RestoresWallpaper();
+	QWallpaper::RestoresWallpaper();
 	Q_UNUSED(event);
 }
 
@@ -780,12 +780,12 @@ void ReWallpaper::closeEvent(QCloseEvent* event)
 *│　创建时间：2020/05/31
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：无
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::SetAutoStart()
+void QWallpaper::SetAutoStart()
 {
 	if (ui.SetAutoStart->isChecked()) {
 		tool::OperationAutoStart(1);
@@ -804,13 +804,13 @@ void ReWallpaper::SetAutoStart()
 *│　创建时间：2020/06/1
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QMouseEvent*)
 *└────────────────────────────────────────────────┘
 */
 
-void ReWallpaper::mousePressEvent(QMouseEvent* event)
+void QWallpaper::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 	{
@@ -838,12 +838,12 @@ void ReWallpaper::mousePressEvent(QMouseEvent* event)
 *│　创建时间：2020/06/1
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QMouseEvent*)
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::mouseMoveEvent(QMouseEvent* event)
+void QWallpaper::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_bLeftBtnPress)
 	{
@@ -861,12 +861,12 @@ void ReWallpaper::mouseMoveEvent(QMouseEvent* event)
 *│　创建时间：2020/06/1
 *└────────────────────────────────────────────────┘
 *┌────────────────────────────────────────────────┐
-*│　命名空间：ReWallpaper
-*│　类    名：ReWallpaper
+*│　命名空间：QWallpaper
+*│　类    名：QWallpaper
 *│　参    数：(QMouseEvent*)
 *└────────────────────────────────────────────────┘
 */
-void ReWallpaper::mouseReleaseEvent(QMouseEvent* event)
+void QWallpaper::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 		m_bLeftBtnPress = false;

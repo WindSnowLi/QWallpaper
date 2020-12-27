@@ -105,13 +105,13 @@
     <ClCompile Include="globalvariable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mythread.cpp" />
-    <ClCompile Include="rewallpaper.cpp" />
+    <ClCompile Include="qwallpaper.cpp" />
     <ClCompile Include="SingleApplication.cpp" />
     <ClCompile Include="tool.cpp" />
     <ClCompile Include="videoplayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="rewallpaper.h" />
+    <QtMoc Include="qwallpaper.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="rewallpaper.ui" />

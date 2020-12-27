@@ -28,9 +28,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rewallpaper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="videoplayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,15 +43,18 @@
     <ClCompile Include="SingleApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="qwallpaper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="rewallpaper.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="mythread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SingleApplication.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="qwallpaper.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -156,42 +156,46 @@ bool tool::OperationAutoStart(int operation)
 {
 	//程序名称
 	QString appName = QApplication::applicationName();
-	//QString appName = "Wallpaper";
 	// 程序路径
-	QString appPath = GetProgramPath();
-	tool::PathConvert(appPath);
-	appPath = "\"" + appPath + "\\" + appName + ".exe\" auto";
-	QSettings* reg = new QSettings(
-		"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+	QString application_path = QApplication::applicationFilePath();
+	tool::PathConvert(application_path);
+
+	application_path = "\"" + application_path + "\" auto";
+	QSettings reg(
+		"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
 		QSettings::NativeFormat);
 	// 如果此键不存在，则返回的是空字符串
-	QString val = reg->value(appName).toString();
+	QString val = reg.value(appName).toString();
 	switch (operation) {
 		//取消自启动
 	case 0:
 		//移除键
-		reg->remove(appName);
+		reg.remove(appName);
 		break;
-		//设置自启动
+
 	case 1:
-		if (val != appPath) {
+		//设置自启动
+		if (val != application_path) {
+			//写入随意的字符串都能写入，但唯独自启动的程序路径写入自动成空，加入这个先添加空的值得解决了
+			reg.setValue(appName, "\"\"");
 			//设置键
-			reg->setValue(appName, appPath);
+			reg.setValue(appName, application_path);
 		}
 		break;
-		//查询自启动
+
 	case 2:
-		if (val.compare(appPath) == 0) {
-			reg->deleteLater();
+		//查询自启动
+		if (val.compare(application_path) == 0) {
+			reg.deleteLater();
 			return true;
 		}
 		else {
-			reg->deleteLater();
+			reg.deleteLater();
 			return false;
 		}
 		break;
 	default:
-		reg->deleteLater();
+		reg.deleteLater();
 		return false;
 	}
 	return false;

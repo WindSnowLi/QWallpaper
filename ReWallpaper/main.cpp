@@ -1,4 +1,4 @@
-#include "rewallpaper.h"
+#include "qwallpaper.h"
 #include <QtWidgets/QApplication>
 #include <QSplashScreen>
 #include <QElapsedTimer>
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	SingleApplication app(argc, argv);
     if (!app.isRunning())
     {
-        ReWallpaper w;
+        QWallpaper w;
         //传入一个要激活程序的窗口，当多开时会激活已有进程的窗口，且多开失败
         app.mainWindow = &w;
         w.show();

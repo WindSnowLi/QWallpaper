@@ -140,7 +140,7 @@ namespace rwini
 		//File path
 		char iniPath[MAX_PATH];
 		//[section [key,value] ]
-		std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::string>>>* iniContent = new std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::string>>>();
+		std::shared_ptr<std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::string>>>> iniContent = std::make_shared<std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::string>>>>();
 
 		/// <summary>
 		/// Convert the parameter to string
@@ -235,7 +235,6 @@ namespace rwini
 		template <typename Type1, typename Type2, typename Type3>
 		bool InsertKey(const Type2& tempsection, const Type1& tempkey, const Type3& tempvalue) noexcept(false);
 
-
 		/// <summary>
 		/// If there is no parent tag, the parent tag is automatically added
 		/// </summary>
@@ -248,7 +247,6 @@ namespace rwini
 		/// <returns>Status</returns>
 		template <typename Type1, typename Type2, typename Type3>
 		bool AutoInsertKey(const Type2& tempsection, const Type1& tempkey, const Type3& tempvalue) noexcept(false);
-
 
 		/// <summary>
 		/// Delete section
@@ -298,7 +296,6 @@ namespace rwini
 #ifndef READWRITEINI_TEMPLATE_
 #define READWRITEINI_TEMPLATE_
 
-
 template <typename Type>
 std::string rwini::ReadWriteini::TypeToString(Type str) noexcept
 {
@@ -341,7 +338,6 @@ bool rwini::ReadWriteini::FindValue(const Type1& tempsection, const Type2& tempk
 	return true;
 }
 
-
 template <typename Type1, typename Type2>
 std::string rwini::ReadWriteini::FindValue(const Type1& tempsection, const Type2& tempkey) noexcept(false)
 {
@@ -367,7 +363,6 @@ std::string rwini::ReadWriteini::FindValue(const Type1& tempsection, const Type2
 	}
 	return tempiter->second.front();
 }
-
 
 template <typename Type1, typename Type2, typename Type3>
 bool rwini::ReadWriteini::SetValue(const Type1& tempsection, const Type2& tempkey, const Type3& tempvalue) noexcept(false)
@@ -396,8 +391,6 @@ bool rwini::ReadWriteini::SetValue(const Type1& tempsection, const Type2& tempke
 	tempiter->second[0] = value;
 	return true;
 }
-
-
 
 template <typename Type1, typename Type2, typename Type3>
 bool rwini::ReadWriteini::SetKey(const Type1& tempsection, const Type2& tempoldkey, const Type3& tempnewkey) noexcept(false)
@@ -433,8 +426,6 @@ bool rwini::ReadWriteini::SetKey(const Type1& tempsection, const Type2& tempoldk
 	return true;
 }
 
-
-
 template <typename Type1>
 bool rwini::ReadWriteini::InsertSection(const Type1& tempsection) noexcept(false)
 {
@@ -447,8 +438,6 @@ bool rwini::ReadWriteini::InsertSection(const Type1& tempsection) noexcept(false
 	iniContent->insert(std::make_pair(section, std::unordered_map<std::string, std::vector<std::string>>()));
 	return true;
 }
-
-
 
 template <typename Type1, typename Type2, typename Type3>
 bool rwini::ReadWriteini::InsertKey(const Type2& tempsection, const Type1& tempkey, const Type3& tempvalue) noexcept(false)
@@ -477,7 +466,6 @@ bool rwini::ReadWriteini::InsertKey(const Type2& tempsection, const Type1& tempk
 	return true;
 }
 
-
 template <typename Type1, typename Type2, typename Type3>
 bool rwini::ReadWriteini::AutoInsertKey(const Type2& tempsection, const Type1& tempkey, const Type3& tempvalue) noexcept(false)
 {
@@ -505,7 +493,6 @@ bool rwini::ReadWriteini::AutoInsertKey(const Type2& tempsection, const Type1& t
 	return true;
 }
 
-
 template <typename Type1>
 bool rwini::ReadWriteini::DeleteSection(const Type1& tempsection) noexcept(false)
 {
@@ -530,8 +517,6 @@ bool rwini::ReadWriteini::DeleteSection(const Type1& tempsection) noexcept(false
 	}
 	return true;
 }
-
-
 
 template <typename Type1, typename Type2>
 bool rwini::ReadWriteini::DeleteKey(const Type1& tempsection, const Type2& tempkey)
@@ -563,7 +548,6 @@ bool rwini::ReadWriteini::DeleteKey(const Type1& tempsection, const Type2& tempk
 
 #ifndef READWRITEINI_REALIZE_
 #define READWRITEINI_REALIZE_
-
 
 rwini::ReadWriteini::ReadWriteini(const char* inipath) noexcept(false)
 {
@@ -713,12 +697,10 @@ rwini::ReadWriteini::ReadWriteini(const char* inipath) noexcept(false)
 	iniFile.close();
 }
 
-
 rwini::ReadWriteini::~ReadWriteini()
 {
-	delete iniContent;
+	iniContent.~shared_ptr();
 }
-
 
 bool rwini::ReadWriteini::Writeini()
 {
@@ -746,7 +728,6 @@ bool rwini::ReadWriteini::Writeini()
 	return true;
 }
 
-
 std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::string>>>::iterator
 rwini::ReadWriteini::SeekSection(std::string temp_section) noexcept(false)
 {
@@ -761,7 +742,6 @@ rwini::ReadWriteini::SeekSection(std::string temp_section) noexcept(false)
 	}
 	return iter;
 }
-
 
 std::unordered_map<std::string, std::vector<std::string>>::iterator
 rwini::ReadWriteini::SeekKey(std::string temp_section, std::string temp_key) noexcept(false)
