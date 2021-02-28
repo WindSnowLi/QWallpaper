@@ -6,6 +6,7 @@
 #include <CRipple.h>
 #include <atlimage.h>
 #include <QtGui\qwindowdefs.h>
+#include <memory>
 namespace global {
 	//播放历史记录
 	extern std::vector<std::string>videoDirectory;
@@ -27,5 +28,7 @@ namespace global {
 	extern int loopPlay;
 	//当前播放的文件的路径
 	extern std::string nowFilePath;
+	//全局水波纹对象
+	extern std::shared_ptr<CRipple> g_Ripple;
 }
 #endif // !GLOBALVARIABLE_H_

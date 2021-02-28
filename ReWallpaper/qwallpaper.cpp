@@ -20,7 +20,6 @@
 #include <memory>
 #include <iostream>
 #include <QMessageBox>
-#pragma comment (lib, "CRIPPLE.lib")
 #pragma comment (lib, "Qt5WinExtrasd.lib")
 
 
@@ -238,11 +237,11 @@ void QWallpaper::Ripple()
 	if (ui.ripple->isChecked()) {
 		rippleobject->toTryLock();
 		rippleobject->ContinueThread();
-		g_Ripple->startTimer();
+		global::g_Ripple->startTimer();
 	}
 	else
 	{
-		g_Ripple->cancelTimer();
+		global::g_Ripple->cancelTimer();
 		rippleobject->PauseThread();
 		QWallpaper::RestoresWallpaper();
 	}
@@ -404,14 +403,14 @@ void QWallpaper::ToLoadProgramItem()
 	//将目标窗口句柄传递给播放器
 	videoPlayer->workerw = videoPlayerWorkerw;
 	//将目标窗口句柄传递给水波纹对象
-	g_Ripple->workerw = videoPlayerWorkerw;
+	global::g_Ripple->workerw = videoPlayerWorkerw;
 	//加载系统原有壁纸至缓存区   在这没有使用 QPixmap自带的QtWin::toHBITMAP(systemWallpaper_Buff);函数，因为使用CImage更省内存
 	systemWallpaper_Buff.Load(tool::QSTOCS(tool::GetSystemWallpaperPath()));
 	//转化系统壁纸格式并传给水波纹对象
 	//系统壁纸HBITMAP缓存
 	HBITMAP systemWallpaper_hbmp = (HBITMAP)systemWallpaper_Buff.operator HBITMAP();
 	int tempWindowHwnd = QWidget::winId();
-	g_Ripple->InitRipple((HWND)tempWindowHwnd, systemWallpaper_hbmp, 10);
+	global::g_Ripple->InitRipple((HWND)tempWindowHwnd, systemWallpaper_hbmp, 10);
 	DeleteObject(systemWallpaper_hbmp);
 	//拼接配置文件路径
 	QString videoDirectory_config_file_path = tool::GetProgramPath() + "\\config\\videoDirectory.xml";

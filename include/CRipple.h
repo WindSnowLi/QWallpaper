@@ -1,14 +1,7 @@
 ﻿#ifndef  CRIPPLE_H_
 #define CRIPPLE_H_
-
-#ifdef CRIPPLE_EXPORTS
-#define CRIPPLE_API __declspec(dllexport)
-#else
-#define CRIPPLE_API __declspec(dllimport)
-#endif
-
-// 此类是从 dll 导出的
-class CRIPPLE_API CRipple {
+#include <Windows.h>
+class CRipple {
 public:
 	CRipple();
 	virtual ~CRipple();
@@ -50,8 +43,4 @@ private:
 	BYTE* m_pBmpRender;				//水波位图渲染数据
 	BITMAPINFO			m_stBitmapInfo;			    //位图信息结构
 };
-
-//全局水波纹对象
-CRIPPLE_API extern CRipple* g_Ripple;
-
 #endif // ! CRIPPLE_H_

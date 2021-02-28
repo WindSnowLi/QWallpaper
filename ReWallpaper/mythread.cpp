@@ -79,10 +79,10 @@ void Ripple::startThreadSlot()
 		::GetWindowTextA(WindowFromPoint(global::mousePoint), global::mouseDownWindowTitle, sizeof(global::mouseDownWindowTitle));
 		if ((strcmp(global::mouseDownWindowTitle, "FolderView") == 0) && tempMousePosition != global::mousePoint) {
 			tempMousePosition = global::mousePoint;
-			g_Ripple->DropStone(global::mousePoint.x, global::mousePoint.y, 2, global::rippleSlidStrength);
+			global::g_Ripple->DropStone(global::mousePoint.x, global::mousePoint.y, 2, global::rippleSlidStrength);
 		}
 		if ((strcmp(global::mouseDownWindowTitle, "FolderView") == 0) && (GetKeyState(1) & 0x8000 || GetAsyncKeyState(2) & 0x8000)) {
-			g_Ripple->DropStone(global::mousePoint.x, global::mousePoint.y, 2, global::rippleClickStrength);
+			global::g_Ripple->DropStone(global::mousePoint.x, global::mousePoint.y, 2, global::rippleClickStrength);
 		}
 		m_mutex.lock();
 		m_mutex.unlock();

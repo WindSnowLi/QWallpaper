@@ -1,5 +1,6 @@
 
 #include "globalvariable.h"
+#include <memory>
 namespace global {
 	//视频路径
 	std::vector <std::string> videoDirectory;
@@ -24,5 +25,7 @@ namespace global {
 	//是否循环播放	1为循环播放，0为列表循环
 	int loopPlay = 1;
 	std::string nowFilePath;
+	//全局水波纹对象
+	std::shared_ptr<CRipple> g_Ripple = std::make_shared<CRipple>();
 	/***********************/
 }

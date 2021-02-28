@@ -48,6 +48,7 @@ signals:
 public slots:
 	void startThreadSlot();
 };
+//都继承自Qt基类，会自动释放
 //循环播放线程对象声明
 extern LoopPlayback* looplaybackobject;
 //循环播放线程容器声明

@@ -102,6 +102,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CRipple.cpp" />
     <ClCompile Include="globalvariable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mythread.cpp" />
@@ -120,6 +121,7 @@
     <QtRcc Include="rewallpaper.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\CRipple.h" />
     <ClInclude Include="globalvariable.h" />
     <QtMoc Include="mythread.h" />
     <ClInclude Include="ReadWriteini.hpp" />

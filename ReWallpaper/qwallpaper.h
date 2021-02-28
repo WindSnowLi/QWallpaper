@@ -71,7 +71,7 @@ private:
 	//ÍĞÅÌÖ¸Õë
 	std::shared_ptr<QSystemTrayIcon> m_systemTray;
 	//ÍĞÅÌ²Ëµ¥
-	std::shared_ptr < QMenu> m_menu;
+	std::shared_ptr <QMenu> m_menu;
 	//ÍĞÅÌÍË³ö
 	std::shared_ptr<QAction> m_menu_exit;
 	//ÍĞÅÌÔİÍ£
