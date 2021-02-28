@@ -127,7 +127,6 @@
     <QtMoc Include="SingleApplication.h" />
     <ClInclude Include="tool.h" />
     <ClInclude Include="videoplayer.h" />
-    <ClInclude Include="x64\Debug\uic\ui_rewallpaper.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ReWallpaper.rc" />

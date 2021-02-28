@@ -75,9 +75,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="x64\Debug\uic\ui_rewallpaper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="globalvariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>

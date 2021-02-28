@@ -824,7 +824,6 @@ void QWallpaper::mousePressEvent(QMouseEvent* event)
 		//窗口最小化
 		//setWindowState(Qt::WindowMinimized);
 		//窗口隐藏
-
 		this->hide();
 	}
 	event->ignore();
@@ -868,7 +867,8 @@ void QWallpaper::mouseMoveEvent(QMouseEvent* event)
 */
 void QWallpaper::mouseReleaseEvent(QMouseEvent* event)
 {
-	if (event->button() == Qt::LeftButton)
+	if (event->button() == Qt::LeftButton) {
 		m_bLeftBtnPress = false;
+	}
 	event->ignore();
 }
