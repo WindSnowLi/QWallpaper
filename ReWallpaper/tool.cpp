@@ -4,7 +4,7 @@
 #include <QCoreApplication>
 #include <qapplication.h>
 #include <fstream>
-
+#include <cstring>
 /*
 *┌────────────────────────────────────────────────┐
 *│　描    述：QString转CString
@@ -59,7 +59,11 @@ QString tool::GetSystemUserName()
 
 QString tool::GetSystemWallpaperPath()
 {
-	return "C:\\Users\\" + tool::GetSystemUserName() + "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\CachedFiles\\CachedImage_1920_1080_POS4.jpg";
+	HDC hDC = ::GetDC(HWND(NULL));               // 得到屏幕DC  
+	int x = ::GetDeviceCaps(hDC, HORZRES);       // 宽  
+	int y = ::GetDeviceCaps(hDC, VERTRES);        // 高   
+	::ReleaseDC(HWND(NULL), hDC);                  // 释放DC
+	return QString("C:\\Users\\") + tool::GetSystemUserName() + "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\CachedFiles\\CachedImage_" + std::to_string(x).c_str() + "_" + std::to_string(y).c_str() + "_POS4.jpg";
 }
 
 /*

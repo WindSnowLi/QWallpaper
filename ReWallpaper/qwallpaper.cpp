@@ -1,4 +1,4 @@
-﻿#pragma execution_character_set("UTF-8")
+﻿ #pragma execution_character_set("UTF-8")
 #include "qwallpaper.h"
 #include "videoplayer.h"
 #include "globalvariable.h"
@@ -10,7 +10,7 @@
 #include <fstream>
 #include <QtWinExtras/qwinfunctions.h>
 #include <CRipple.h>
-#include "mythread.h"
+#include "mythread.h" 
 #include <qthread.h>
 #include <atlimage.h>
 #include <qpalette.h>
