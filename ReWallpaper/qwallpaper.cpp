@@ -1,4 +1,4 @@
-﻿ #pragma execution_character_set("UTF-8")
+﻿#pragma execution_character_set("UTF-8")
 #include "qwallpaper.h"
 #include "videoplayer.h"
 #include "globalvariable.h"
@@ -8,7 +8,6 @@
 #include <QFileDialog>
 #include <WinUser.h>
 #include <fstream>
-#include <QtWinExtras/qwinfunctions.h>
 #include <CRipple.h>
 #include "mythread.h" 
 #include <qthread.h>
@@ -20,7 +19,6 @@
 #include <memory>
 #include <iostream>
 #include <QMessageBox>
-#pragma comment (lib, "Qt5WinExtrasd.lib")
 
 
 /*
@@ -173,7 +171,6 @@ void QWallpaper::RestoresWallpaper()
 
 void QWallpaper::SelectFile() {
 	QString filename;
-	//限定只能打开*.txt文件
 	filename = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr(
 		"*.asf;*.avi;*.divx;*.dv;*.flv;*.gxf;*.m1v;"
 		"*.m2v;*.m2ts;*.m4v;*.mkv;*.mov;*.mp2;*.mp4;"

@@ -1,4 +1,4 @@
-#include "qwallpaper.h"
+ï»¿#include "qwallpaper.h"
 #include <QtWidgets/QApplication>
 #include <QSplashScreen>
 #include <QElapsedTimer>
@@ -10,10 +10,10 @@ int main(int argc, char *argv[])
     if (!app.isRunning())
     {
         QWallpaper w;
-        //´«ÈëÒ»¸öÒª¼¤»î³ÌÐòµÄ´°¿Ú£¬µ±¶à¿ªÊ±»á¼¤»îÒÑÓÐ½ø³ÌµÄ´°¿Ú£¬ÇÒ¶à¿ªÊ§°Ü
+        //ä¼ å…¥ä¸€ä¸ªè¦æ¿€æ´»ç¨‹åºçš„çª—å£ï¼Œå½“å¤šå¼€æ—¶ä¼šæ¿€æ´»å·²æœ‰è¿›ç¨‹çš„çª—å£ï¼Œä¸”å¤šå¼€å¤±è´¥
         app.mainWindow = &w;
         w.show();
-		//Èç¹ûÓÐÆô¶¯²ÎÊýauto£¬ËµÃ÷Îª×¢²á±í×ÔÆô¶¯£¬Æô¶¯ºó×Ô¶¯Òþ²Ø
+		//å¦‚æžœæœ‰å¯åŠ¨å‚æ•°autoï¼Œè¯´æ˜Žä¸ºæ³¨å†Œè¡¨è‡ªå¯åŠ¨ï¼Œå¯åŠ¨åŽè‡ªåŠ¨éšè—
 		if (argc >= 2)
 		{
 			QString tempargv;

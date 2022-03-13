@@ -20,11 +20,11 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -40,32 +40,39 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\boost_1_70_0;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;E:\Desktop\VSProject\QWallpaper\include;$(IncludePath)</IncludePath>
-    <ReferencePath>E:\Desktop\VSProject\QWallpaper\lib;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(ReferencePath)</ReferencePath>
-    <LibraryPath>D:\Qt\5.14.2\msvc2017_64\lib;D:\boost_1_70_0\lib;E:\Desktop\VSProject\QWallpaper\lib;$(LibraryPath)</LibraryPath>
-    <LibraryWPath>E:\Desktop\VSProject\QWallpaper\lib\runtimelib;$(LibraryWPath)</LibraryWPath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
+    <ReferencePath>..\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>..\lib;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>..\lib\bin;$(LibraryWPath)</LibraryWPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;D:\boost_1_70_0;E:\Desktop\VSProject\QWallpaper\include;$(IncludePath)</IncludePath>
-    <ReferencePath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;E:\Desktop\VSProject\QWallpaper\lib;$(ReferencePath)</ReferencePath>
-    <LibraryPath>D:\Qt\5.14.2\msvc2017_64\lib;D:\boost_1_70_0\lib;E:\Desktop\VSProject\QWallpaper\lib;$(LibraryPath)</LibraryPath>
-    <LibraryWPath>E:\Desktop\VSProject\QWallpaper\lib\runtimelib;$(LibraryWPath)</LibraryWPath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
+    <ReferencePath>..\lib\debug;$(ReferencePath)</ReferencePath>
+    <LibraryPath>..\lib\debug;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>..\lib\debug\bin;$(LibraryWPath)</LibraryWPath>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>5.14.2_msvc2017_64</QtInstall>
-    <QtModules>core;gui;webchannel;widgets</QtModules>
-    <QtHeaderSearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;$(QtHeaderSearchPath)</QtHeaderSearchPath>
-    <QtLibrarySearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(QtLibrarySearchPath)</QtLibrarySearchPath>
+    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets;network;</QtModules>
+    <QtHeaderSearchPath>
+    </QtHeaderSearchPath>
+    <QtLibrarySearchPath>
+    </QtLibrarySearchPath>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>5.14.2_msvc2017_64</QtInstall>
-    <QtModules>core;gui;webchannel;widgets</QtModules>
-    <QtHeaderSearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;$(QtHeaderSearchPath)</QtHeaderSearchPath>
-    <QtLibrarySearchPath>D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib;$(QtLibrarySearchPath)</QtLibrarySearchPath>
+    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets;network;</QtModules>
+    <QtHeaderSearchPath>
+    </QtHeaderSearchPath>
+    <QtLibrarySearchPath>
+    </QtLibrarySearchPath>
     <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -77,12 +84,14 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\Desktop\VSProject\QWallpaper\include;E:\Desktop\VSProject\QWallpaper\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>boost_atomic-vc140-mt-gd.lib;boost_chrono-vc140-mt-gd.lib;boost_container-vc140-mt-gd.lib;boost_date_time-vc140-mt-gd.lib;boost_exception-vc140-mt-gd.lib;boost_regex-vc140-mt-gd.lib;boost_serialization-vc140-mt-gd.lib;boost_system-vc140-mt-gd.lib;boost_thread-vc140-mt-gd.lib;boost_wserialization-vc140-mt-gd.lib;%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,8 +106,8 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\Desktop\VSProject\QWallpaper\lib;E:\Desktop\VSProject\QWallpaper\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>boost_atomic-vc140-mt.lib;boost_chrono-vc140-mt.lib;boost_container-vc140-mt.lib;boost_date_time-vc140-mt.lib;boost_exception-vc140-mt.lib;boost_regex-vc140-mt.lib;boost_serialization-vc140-mt.lib;boost_system-vc140-mt.lib;boost_thread-vc140-mt.lib;boost_wserialization-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
