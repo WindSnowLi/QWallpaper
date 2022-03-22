@@ -1,4 +1,4 @@
-#include "mythread.h"
+ï»¿#include "mythread.h"
 #include "globalvariable.h"
 #include <qthread.h>
 #include <Windows.h>
@@ -6,13 +6,13 @@
 #include <qdebug.h>
 #include "videoplayer.h"
 #include "tool.h"
-//Ñ­»·²¥·ÅÏß³Ì¶ÔÏó¶¨Òå
+//å¾ªç¯æ’­æ”¾çº¿ç¨‹å¯¹è±¡å®šä¹‰
 LoopPlayback* looplaybackobject = new LoopPlayback();
-//Ñ­»·²¥·ÅÏß³ÌÈİÆ÷¶¨Òå
+//å¾ªç¯æ’­æ”¾çº¿ç¨‹å®¹å™¨å®šä¹‰
 QThread* looplayback = new  QThread();
-//Ë®²¨ÎÆÏß³Ì¶ÔÏó¶¨Òå
+//æ°´æ³¢çº¹çº¿ç¨‹å¯¹è±¡å®šä¹‰
 Ripple* rippleobject = new Ripple();
-//Ë®²¨ÎÆÏß³ÌÈİÆ÷¶¨Òå
+//æ°´æ³¢çº¹çº¿ç¨‹å®¹å™¨å®šä¹‰
 QThread* ripple = new QThread();
 void MyThread::closeThread()
 {
@@ -73,9 +73,9 @@ void Ripple::startThreadSlot()
 	CPoint tempMousePosition = { 0 };
 	while (1) {
 		Sleep(global::rippleSlidHz);
-		// »ñÈ¡Êó±êµ±Ç°Î»ÖÃ
+		// è·å–é¼ æ ‡å½“å‰ä½ç½®
 		GetCursorPos(&global::mousePoint);
-		// »ñÈ¡´°¿Ú±êÌâ
+		// è·å–çª—å£æ ‡é¢˜
 		::GetWindowTextA(WindowFromPoint(global::mousePoint), global::mouseDownWindowTitle, sizeof(global::mouseDownWindowTitle));
 		if ((strcmp(global::mouseDownWindowTitle, "FolderView") == 0) && tempMousePosition != global::mousePoint) {
 			tempMousePosition = global::mousePoint;

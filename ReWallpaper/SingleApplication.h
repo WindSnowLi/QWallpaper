@@ -1,4 +1,4 @@
-#ifndef SINGLEAPPLICATION_H
+ï»¿#ifndef SINGLEAPPLICATION_H
 #define SINGLEAPPLICATION_H
 
 #include <QObject>
@@ -12,21 +12,21 @@ class SingleApplication : public QApplication
     Q_OBJECT
 public:
     SingleApplication(int& argc, char** argv);
-    bool isRunning();               // ÊÇ·ñÒÑ¾­ÓĞÊµÀıÔÚÔËĞĞ
-    QWidget* mainWindow;            // MainWindowÖ¸Õë
+    bool isRunning();               // æ˜¯å¦å·²ç»æœ‰å®ä¾‹åœ¨è¿è¡Œ
+    QWidget* mainWindow;            // MainWindowæŒ‡é’ˆ
 
 private slots:
-    // ÓĞĞÂÁ¬½ÓÊ±´¥·¢
+    // æœ‰æ–°è¿æ¥æ—¶è§¦å‘
     void newLocalConnection();
 
 private:
-    // ³õÊ¼»¯±¾µØÁ¬½Ó
+    // åˆå§‹åŒ–æœ¬åœ°è¿æ¥
     void initLocalConnection();
-    // ´´½¨·şÎñ¶Ë
+    // åˆ›å»ºæœåŠ¡ç«¯
     void newLocalServer();
-    bool bRunning;                  // ÊÇ·ñÒÑ¾­ÓĞÊµÀıÔÚÔËĞĞ
-    QLocalServer* localServer;      // ±¾µØsocket Server
-    QString serverName;             // ·şÎñÃû³Æ
+    bool bRunning;                  // æ˜¯å¦å·²ç»æœ‰å®ä¾‹åœ¨è¿è¡Œ
+    QLocalServer* localServer;      // æœ¬åœ°socket Server
+    QString serverName;             // æœåŠ¡åç§°
 };
 
 #endif // SINGLEAPPLICATION_H

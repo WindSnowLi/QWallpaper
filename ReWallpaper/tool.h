@@ -7,16 +7,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * */
 #ifndef TOOL_H_
 #define TOOL_H_
-#include <atlimage.h>
 #include <QtCore\qstring.h>
 #include <vector>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/vector.hpp>
+#include <thread>
 namespace tool {
 	//QString转CString
-	CString QSTOCS(QString qs);
+	std::wstring QSTOCS(QString qs);
 	//获取当前系统用户名
 	QString GetSystemUserName();
 	//获取当前系统壁纸路径
@@ -65,7 +65,7 @@ void tool::BoostWrite(QString write_boost_file_path, T& write_target_object)
 	boost::archive::xml_oarchive oa(write_targetConfig_file);
 	oa& BOOST_SERIALIZATION_NVP(write_target_object);
 	//延迟100ms，以防文件写入缺失
-	Sleep(100);
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 /*

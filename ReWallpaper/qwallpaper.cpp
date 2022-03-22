@@ -147,7 +147,7 @@ QWallpaper::~QWallpaper()
 
 void QWallpaper::RestoresWallpaper()
 {
-	CopyFile(tool::QSTOCS(tool::GetSystemWallpaperPath()), L"./picture/systemwallpaper/systemwallpaper.jpg", FALSE);
+	CopyFile(tool::QSTOCS(tool::GetSystemWallpaperPath()).c_str(), L"./picture/systemwallpaper/systemwallpaper.jpg", FALSE);
 	QString tempWallpaperPathQStr = tool::GetProgramPath() + "\\picture\\systemwallpaper\\systemwallpaper.jpg";
 	std::string tempWallpaperPathStr = tempWallpaperPathQStr.toStdString();
 	char tempWallpaperPathchar[500];
@@ -402,7 +402,7 @@ void QWallpaper::ToLoadProgramItem()
 	//将目标窗口句柄传递给水波纹对象
 	global::g_Ripple->workerw = videoPlayerWorkerw;
 	//加载系统原有壁纸至缓存区   在这没有使用 QPixmap自带的QtWin::toHBITMAP(systemWallpaper_Buff);函数，因为使用CImage更省内存
-	systemWallpaper_Buff.Load(tool::QSTOCS(tool::GetSystemWallpaperPath()));
+	systemWallpaper_Buff.Load(tool::QSTOCS(tool::GetSystemWallpaperPath()).c_str());
 	//转化系统壁纸格式并传给水波纹对象
 	//系统壁纸HBITMAP缓存
 	HBITMAP systemWallpaper_hbmp = (HBITMAP)systemWallpaper_Buff.operator HBITMAP();

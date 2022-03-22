@@ -1,4 +1,4 @@
-#ifndef VIDEOPLAYER_H_
+ï»¿#ifndef VIDEOPLAYER_H_
 #define VIDEOPLAYER_H_
 #define ssize_t SSIZE_T
 #include <windows.h>
@@ -24,12 +24,12 @@ public:
 	bool set_position(float position);
 	bool set_stop();
 	bool set_play();
-	//»ñÈ¡²¥·ÅÆ÷ÊÇ·ñ´æÔÚ
+	//è·å–æ’­æ”¾å™¨æ˜¯å¦å­˜åœ¨
 	bool getVideoStatus();
-	//»ñÈ¡²¥·Å×´Ì¬
+	//è·å–æ’­æ”¾çŠ¶æ€
 	bool getPlayingStatus();
 	HWND workerw;
 };
-//²¥·ÅÆ÷¶ÔÏó
+//æ’­æ”¾å™¨å¯¹è±¡
 extern VideoPlayer* videoPlayer;
 #endif // !VIDEOPLAYER_H_

@@ -23,6 +23,9 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Resource Files\glsl">
+      <UniqueIdentifier>{4f3f0071-0371-415a-9ffd-f1fcbbfbe468}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -46,6 +49,12 @@
     <ClCompile Include="qwallpaper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CRippleWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QExpandOpenGLWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="CRipple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +67,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="qwallpaper.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CRippleWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -87,7 +99,7 @@
     <ClInclude Include="ReadWriteini.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\CRipple.h">
+    <ClInclude Include="QExpandOpenGLWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -96,5 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\DynamicWallpaper.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glsl\draw.vert">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
+    <None Include="Resources\glsl\draw.frag">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

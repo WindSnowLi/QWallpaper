@@ -1,4 +1,4 @@
-#include "SingleApplication.h"
+ï»¿#include "SingleApplication.h"
 #include <QWidget>
 #include <QtNetwork/QLocalSocket>
 #include <QtNetwork/QLocalServer>
@@ -12,7 +12,7 @@ SingleApplication::SingleApplication(int& argc, char** argv)
     , localServer(NULL)
     , mainWindow(NULL)
 {
-    // È¡Ó¦ÓÃ³ÌĞòÃû×÷ÎªLocalServerµÄÃû×Ö
+    // å–åº”ç”¨ç¨‹åºåä½œä¸ºLocalServerçš„åå­—
     serverName = QFileInfo(QCoreApplication::applicationFilePath()).fileName();
     //qDebug()<<serverName;
     initLocalConnection();
@@ -20,8 +20,8 @@ SingleApplication::SingleApplication(int& argc, char** argv)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// ËµÃ÷£º
-// ¼ì²éÊÇ·ñÒÑ½›ÓĞÒ»¸öÊµÀıÔÚÔËĞĞ, true - ÓĞÊµÀıÔËĞĞ£¬ false - Ã»ÓĞÊµÀıÔËĞĞ
+// è¯´æ˜ï¼š
+// æ£€æŸ¥æ˜¯å¦å·²ç¶“æœ‰ä¸€ä¸ªå®ä¾‹åœ¨è¿è¡Œ, true - æœ‰å®ä¾‹è¿è¡Œï¼Œ false - æ²¡æœ‰å®ä¾‹è¿è¡Œ
 ////////////////////////////////////////////////////////////////////////////////
 bool SingleApplication::isRunning()
 {
@@ -29,8 +29,8 @@ bool SingleApplication::isRunning()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// ËµÃ÷£º
-// Í¨¹ısocketÍ¨Ñ¶ÊµÏÖ³ÌĞòµ¥ÊµÀıÔËĞĞ£¬¼àÌıµ½ĞÂµÄÁ¬½ÓÊ±´¥·¢¸Ãº¯Êı
+// è¯´æ˜ï¼š
+// é€šè¿‡socketé€šè®¯å®ç°ç¨‹åºå•å®ä¾‹è¿è¡Œï¼Œç›‘å¬åˆ°æ–°çš„è¿æ¥æ—¶è§¦å‘è¯¥å‡½æ•°
 ////////////////////////////////////////////////////////////////////////////////
 void SingleApplication::newLocalConnection()
 {
@@ -39,11 +39,11 @@ void SingleApplication::newLocalConnection()
         return;
     socket->waitForReadyRead(1000);
     QTextStream stream(socket);
-    //ÆäËû´¦Àí
+    //å…¶ä»–å¤„ç†
     delete socket;
     if (mainWindow != NULL)
     {
-        //¼¤»î´°¿Ú
+        //æ¿€æ´»çª—å£
         mainWindow->raise();
         mainWindow->activateWindow();
         mainWindow->setWindowState((mainWindow->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
@@ -52,9 +52,9 @@ void SingleApplication::newLocalConnection()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// ËµÃ÷£º
-// Í¨¹ısocketÍ¨Ñ¶ÊµÏÖ³ÌĞòµ¥ÊµÀıÔËĞĞ£¬
-// ³õÊ¼»¯±¾µØÁ¬½Ó£¬Èç¹ûÁ¬½Ó²»ÉÏserver£¬Ôò´´½¨£¬·ñÔòÍË³ö
+// è¯´æ˜ï¼š
+// é€šè¿‡socketé€šè®¯å®ç°ç¨‹åºå•å®ä¾‹è¿è¡Œï¼Œ
+// åˆå§‹åŒ–æœ¬åœ°è¿æ¥ï¼Œå¦‚æœè¿æ¥ä¸ä¸Šserverï¼Œåˆ™åˆ›å»ºï¼Œå¦åˆ™é€€å‡º
 ////////////////////////////////////////////////////////////////////////////////
 void SingleApplication::initLocalConnection()
 {
@@ -64,7 +64,7 @@ void SingleApplication::initLocalConnection()
     if (socket.waitForConnected(500))
     {
         bRunning = true;
-        // ÆäËû´¦Àí£¬Èç£º½«Æô¶¯²ÎÊı·¢ËÍµ½·şÎñ¶Ë
+        // å…¶ä»–å¤„ç†ï¼Œå¦‚ï¼šå°†å¯åŠ¨å‚æ•°å‘é€åˆ°æœåŠ¡ç«¯
         QTextStream stream(&socket);
         QStringList args = QCoreApplication::arguments();
         if (args.count() > 1)
@@ -77,13 +77,13 @@ void SingleApplication::initLocalConnection()
         return;
     }
 
-    //Á¬½Ó²»ÉÏ·şÎñÆ÷£¬¾Í´´½¨Ò»¸ö
+    //è¿æ¥ä¸ä¸ŠæœåŠ¡å™¨ï¼Œå°±åˆ›å»ºä¸€ä¸ª
     newLocalServer();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// ËµÃ÷£º
-// ´´½¨LocalServer
+// è¯´æ˜ï¼š
+// åˆ›å»ºLocalServer
 ////////////////////////////////////////////////////////////////////////////////
 void SingleApplication::newLocalServer()
 {
@@ -91,11 +91,11 @@ void SingleApplication::newLocalServer()
     connect(localServer, SIGNAL(newConnection()), this, SLOT(newLocalConnection()));
     if (!localServer->listen(serverName))
     {
-        // ´ËÊ±¼àÌıÊ§°Ü£¬¿ÉÄÜÊÇ³ÌĞò±ÀÀ£Ê±,²ĞÁô½ø³Ì·şÎñµ¼ÖÂµÄ,ÒÆ³ıÖ®
+        // æ­¤æ—¶ç›‘å¬å¤±è´¥ï¼Œå¯èƒ½æ˜¯ç¨‹åºå´©æºƒæ—¶,æ®‹ç•™è¿›ç¨‹æœåŠ¡å¯¼è‡´çš„,ç§»é™¤ä¹‹
         if (localServer->serverError() == QAbstractSocket::AddressInUseError)
         {
-            QLocalServer::removeServer(serverName); // <-- ÖØµã
-            localServer->listen(serverName); // ÔÙ´Î¼àÌı
+            QLocalServer::removeServer(serverName); // <-- é‡ç‚¹
+            localServer->listen(serverName); // å†æ¬¡ç›‘å¬
         }
     }
 }

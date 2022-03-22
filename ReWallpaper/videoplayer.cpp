@@ -1,7 +1,7 @@
-#include "videoplayer.h"
+ï»¿#include "videoplayer.h"
 #include <QMessageBox>
 
-//²¥·ÅÆ÷È«¾Ö¶ÔÏó
+//æ’­æ”¾å™¨å…¨å±€å¯¹è±¡
 VideoPlayer* videoPlayer = new VideoPlayer();
 bool VideoPlayer::setVolume(int volume) {
 	Volume = volume;

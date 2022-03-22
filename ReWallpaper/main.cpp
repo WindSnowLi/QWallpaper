@@ -4,9 +4,13 @@
 #include <QElapsedTimer>
 #include "SingleApplication.h"
 #include <QMessageBox>
+#include "CRippleWidget.h"
 int main(int argc, char *argv[])
 {
 	SingleApplication app(argc, argv);
+	CRippleWidget c;
+	c.show();
+	return app.exec();
     if (!app.isRunning())
     {
         QWallpaper w;

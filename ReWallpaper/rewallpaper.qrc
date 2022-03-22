@@ -18,4 +18,8 @@
     <qresource prefix="/png/background">
         <file>Resources/no_border_background.png</file>
     </qresource>
+    <qresource prefix="/glsl">
+        <file>Resources/glsl/draw.frag</file>
+        <file>Resources/glsl/draw.vert</file>
+    </qresource>
 </RCC>

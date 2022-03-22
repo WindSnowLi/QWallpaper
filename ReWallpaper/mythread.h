@@ -1,4 +1,4 @@
-#ifndef MYTHREAD_H
+ï»¿#ifndef MYTHREAD_H
 #define MYTHREAD_H
 
 #include <QObject>
@@ -11,17 +11,17 @@ class MyThread : public QObject
 public:
 	MyThread() {};
 	~MyThread() {};
-	//Ìø³öÏß³ÌµÄwhileÑ­»·
+	//è·³å‡ºçº¿ç¨‹çš„whileå¾ªç¯
 	virtual	void closeThread();
 signals:
 public slots:
-	//Ïß³ÌÖ÷Òª¹¦ÄÜ
+	//çº¿ç¨‹ä¸»è¦åŠŸèƒ½
 	virtual void startThreadSlot() {};
-	//ÔİÍ£Ïß³Ì£¬¼ÓËø
+	//æš‚åœçº¿ç¨‹ï¼ŒåŠ é”
 	virtual void PauseThread();
-	//¼ÌĞøÏß³Ì£¬½âËø
+	//ç»§ç»­çº¿ç¨‹ï¼Œè§£é”
 	virtual void ContinueThread();
-	//³¢ÊÔ¼ÓËø£¬³É¹¦·µ»Øtrue
+	//å°è¯•åŠ é”ï¼ŒæˆåŠŸè¿”å›true
 	virtual bool toTryLock();
 protected:
 	QMutex m_mutex;
@@ -48,13 +48,13 @@ signals:
 public slots:
 	void startThreadSlot();
 };
-//¶¼¼Ì³Ğ×ÔQt»ùÀà£¬»á×Ô¶¯ÊÍ·Å
-//Ñ­»·²¥·ÅÏß³Ì¶ÔÏóÉùÃ÷
+//éƒ½ç»§æ‰¿è‡ªQtåŸºç±»ï¼Œä¼šè‡ªåŠ¨é‡Šæ”¾
+//å¾ªç¯æ’­æ”¾çº¿ç¨‹å¯¹è±¡å£°æ˜
 extern LoopPlayback* looplaybackobject;
-//Ñ­»·²¥·ÅÏß³ÌÈİÆ÷ÉùÃ÷
+//å¾ªç¯æ’­æ”¾çº¿ç¨‹å®¹å™¨å£°æ˜
 extern QThread* looplayback;
-//Ë®²¨ÎÆÏß³Ì¶ÔÏóÉùÃ÷
+//æ°´æ³¢çº¹çº¿ç¨‹å¯¹è±¡å£°æ˜
 extern Ripple* rippleobject;
-//Ë®²¨ÎÆÏß³ÌÈİÆ÷ÉùÃ÷
+//æ°´æ³¢çº¹çº¿ç¨‹å®¹å™¨å£°æ˜
 extern QThread* ripple;
 #endif // !MYTHREAD_H

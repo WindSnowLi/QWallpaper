@@ -50,13 +50,14 @@
     <ReferencePath>..\lib\debug;$(ReferencePath)</ReferencePath>
     <LibraryPath>..\lib\debug;$(LibraryPath)</LibraryPath>
     <LibraryWPath>..\lib\debug\bin;$(LibraryWPath)</LibraryWPath>
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>6.2.3_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets;network;</QtModules>
+    <QtInstall>6.2.4_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets;opengl;openglwidgets;network;</QtModules>
     <QtHeaderSearchPath>
     </QtHeaderSearchPath>
     <QtLibrarySearchPath>
@@ -73,6 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnabled>false</VcpkgEnabled>
+    <VcpkgManifestInstall>false</VcpkgManifestInstall>
+    <VcpkgAutoLink>false</VcpkgAutoLink>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -91,7 +94,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>boost_atomic-vc140-mt-gd.lib;boost_chrono-vc140-mt-gd.lib;boost_container-vc140-mt-gd.lib;boost_date_time-vc140-mt-gd.lib;boost_exception-vc140-mt-gd.lib;boost_regex-vc140-mt-gd.lib;boost_serialization-vc140-mt-gd.lib;boost_system-vc140-mt-gd.lib;boost_thread-vc140-mt-gd.lib;boost_wserialization-vc140-mt-gd.lib;%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;boost_atomic-vc140-mt-gd.lib;boost_chrono-vc140-mt-gd.lib;boost_container-vc140-mt-gd.lib;boost_date_time-vc140-mt-gd.lib;boost_exception-vc140-mt-gd.lib;boost_regex-vc140-mt-gd.lib;boost_serialization-vc140-mt-gd.lib;boost_system-vc140-mt-gd.lib;boost_thread-vc140-mt-gd.lib;boost_wserialization-vc140-mt-gd.lib;%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -112,9 +115,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CRipple.cpp" />
+    <ClCompile Include="CRippleWidget.cpp" />
     <ClCompile Include="globalvariable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mythread.cpp" />
+    <ClCompile Include="QExpandOpenGLWidget.cpp" />
     <ClCompile Include="qwallpaper.cpp" />
     <ClCompile Include="SingleApplication.cpp" />
     <ClCompile Include="tool.cpp" />
@@ -130,9 +135,10 @@
     <QtRcc Include="rewallpaper.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\CRipple.h" />
+    <QtMoc Include="CRippleWidget.h" />
     <ClInclude Include="globalvariable.h" />
     <QtMoc Include="mythread.h" />
+    <ClInclude Include="QExpandOpenGLWidget.h" />
     <ClInclude Include="ReadWriteini.hpp" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="SingleApplication.h" />
@@ -144,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\DynamicWallpaper.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glsl\draw.frag" />
+    <None Include="Resources\glsl\draw.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

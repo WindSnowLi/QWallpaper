@@ -1,4 +1,4 @@
-#ifndef GLOBALVARIABLE_H_
+ï»¿#ifndef GLOBALVARIABLE_H_
 #define GLOBALVARIABLE_H_ 
 #include <vector>
 #include <string>
@@ -8,27 +8,27 @@
 #include <QtGui\qwindowdefs.h>
 #include <memory>
 namespace global {
-	//²¥·ÅÀúÊ·¼ÇÂ¼
+	//æ’­æ”¾å†å²è®°å½•
 	extern std::vector<std::string>videoDirectory;
-	//Êó±êµ±Ç°ËùÔÚÎ»ÖÃ
+	//é¼ æ ‡å½“å‰æ‰€åœ¨ä½ç½®
 	extern CPoint mousePoint;
-	//µ±Ç°Êó±êÏÂµÄ´°¿ÚÃû³Æ
+	//å½“å‰é¼ æ ‡ä¸‹çš„çª—å£åç§°
 	extern char mouseDownWindowTitle[100];
-	//Ë®²¨»¬¶¯Á¦¶È
+	//æ°´æ³¢æ»‘åŠ¨åŠ›åº¦
 	extern int rippleSlidStrength;
-	//Ë®²¨»¬¶¯ÆµÂÊ
+	//æ°´æ³¢æ»‘åŠ¨é¢‘ç‡
 	extern int rippleSlidHz;
-	//Ë®²¨µã»÷Á¦¶È
+	//æ°´æ³¢ç‚¹å‡»åŠ›åº¦
 	extern int rippleClickStrength;
-	//µ±Ç°ÊÓÆµËùÔÚÄ¿Â¼µÄĞĞÊı
+	//å½“å‰è§†é¢‘æ‰€åœ¨ç›®å½•çš„è¡Œæ•°
 	extern int lineNumber;
-	//²¥·ÅÆ÷ÒôÁ¿
+	//æ’­æ”¾å™¨éŸ³é‡
 	extern int playerVolume;
-	//ÊÇ·ñÑ­»·²¥·Å	1ÎªÑ­»·²¥·Å£¬2ÎªÁĞ±íÑ­»·
+	//æ˜¯å¦å¾ªç¯æ’­æ”¾	1ä¸ºå¾ªç¯æ’­æ”¾ï¼Œ2ä¸ºåˆ—è¡¨å¾ªç¯
 	extern int loopPlay;
-	//µ±Ç°²¥·ÅµÄÎÄ¼şµÄÂ·¾¶
+	//å½“å‰æ’­æ”¾çš„æ–‡ä»¶çš„è·¯å¾„
 	extern std::string nowFilePath;
-	//È«¾ÖË®²¨ÎÆ¶ÔÏó
+	//å…¨å±€æ°´æ³¢çº¹å¯¹è±¡
 	extern std::shared_ptr<CRipple> g_Ripple;
 }
 #endif // !GLOBALVARIABLE_H_

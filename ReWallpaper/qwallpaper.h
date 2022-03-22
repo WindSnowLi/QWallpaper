@@ -1,4 +1,4 @@
-#ifndef REWAPPPAPER_H_
+ï»¿#ifndef REWAPPPAPER_H_
 #define REWAPPPAPER_H_
 #include <QtWidgets/QMainWindow>
 #include "ui_rewallpaper.h"
@@ -16,67 +16,67 @@ public:
 	~QWallpaper();
 private:
 	Ui::ReWallpaperClass ui;
-	//ÏµÍ³±ÚÖ½»º´æÇø
+	//ç³»ç»Ÿå£çº¸ç¼“å­˜åŒº
 	CImage systemWallpaper_Buff;
-	//»Ö¸´Ô­ÓĞÏµÍ³±ÚÖ½
+	//æ¢å¤åŸæœ‰ç³»ç»Ÿå£çº¸
 	void RestoresWallpaper();
-	//¼ÓÔØ³ÌĞòËùĞèÒªµÄÄÚÈİ,²¢×öÒ»Ğ©³ÌĞò»ù±¾µÄ³õÊ¼»¯¹¤×÷
+	//åŠ è½½ç¨‹åºæ‰€éœ€è¦çš„å†…å®¹,å¹¶åšä¸€äº›ç¨‹åºåŸºæœ¬çš„åˆå§‹åŒ–å·¥ä½œ
 	void ToLoadProgramItem();
-	//³õÊ¼»¯¼ÓÔØui
+	//åˆå§‹åŒ–åŠ è½½ui
 	void ToLoadProgramUI();
-	//³õÊ¼»¯³ÌĞòÖ÷ÒªÏß³Ì
+	//åˆå§‹åŒ–ç¨‹åºä¸»è¦çº¿ç¨‹
 	void InitializeThread();
-	//³õÊ¼»¯ÎŞ±ß¿ò½çÃæ
+	//åˆå§‹åŒ–æ— è¾¹æ¡†ç•Œé¢
 	void InitializeNoBorder();
-	//³õÊ¼»¯ÍĞÅÌ
+	//åˆå§‹åŒ–æ‰˜ç›˜
 	void InitializeTray();
 private slots:
-	//Ñ¡ÔñÊÓÆµÎÄ¼ş
+	//é€‰æ‹©è§†é¢‘æ–‡ä»¶
 	void SelectFile();
-	//½áÊø²¥·Å
+	//ç»“æŸæ’­æ”¾
 	void EndPlay();
-	//Ë®²¨ÎÆ¿ª¹Ø
+	//æ°´æ³¢çº¹å¼€å…³
 	void Ripple();
-	//ÉèÖÃ³ÌĞòÖ÷½çÃæ±ÚÖ½
+	//è®¾ç½®ç¨‹åºä¸»ç•Œé¢å£çº¸
 	//void SetMainWindowBackGround(QString picturePath);
-	//ÉèÖÃÒôÁ¿
+	//è®¾ç½®éŸ³é‡
 	void SetPlayerVolume(int volume);
-	//ÉèÖÃ»¬¶¯Ë®²¨ÆµÂÊ
+	//è®¾ç½®æ»‘åŠ¨æ°´æ³¢é¢‘ç‡
 	void SetSlidRippleHz(int hz);
-	//ÉèÖÃË®²¨»¬¶¯Á¦¶È
+	//è®¾ç½®æ°´æ³¢æ»‘åŠ¨åŠ›åº¦
 	void SetSlidRippleStrength(int strength);
-	//ÉèÖÃË®²¨µã»÷Á¦¶È
+	//è®¾ç½®æ°´æ³¢ç‚¹å‡»åŠ›åº¦
 	void SetClickRippleStrength(int strength);
-	//Çå¿ÕÀúÊ·²¥·Å¼ÇÂ¼
+	//æ¸…ç©ºå†å²æ’­æ”¾è®°å½•
 	void CleanPlayerTable();
-	//¹Ø±Õ³ÌĞò
+	//å…³é—­ç¨‹åº
 	void closeEvent(QCloseEvent* event);
-	//ÉèÖÃ×ÔÆô¶¯
+	//è®¾ç½®è‡ªå¯åŠ¨
 	void SetAutoStart();
-	//ÍĞÅÌÏûÏ¢
+	//æ‰˜ç›˜æ¶ˆæ¯
 	void ActiveTray(QSystemTrayIcon::ActivationReason reason);
-	//Ñ­»·²¥·Å
+	//å¾ªç¯æ’­æ”¾
 	void SetLoopPlay();
-	//ÔİÍ£²¥·Å
+	//æš‚åœæ’­æ”¾
 	void setPausePlay();
-	//¼ÌĞø²¥·Å
+	//ç»§ç»­æ’­æ”¾
 	void setContinuePlay();
 private:
-	//Ô­´°¿Ú±³¾°
+	//åŸçª—å£èƒŒæ™¯
 	QPixmap  m_pixmap;
-	//ÉèÖÃÍÏ¶¯
+	//è®¾ç½®æ‹–åŠ¨
 	QPoint m_ptPress;
-	//×ó¼üÊÇ·ñ°´ÏÂ
+	//å·¦é”®æ˜¯å¦æŒ‰ä¸‹
 	bool m_bLeftBtnPress = false;
-	//ÍĞÅÌÖ¸Õë
+	//æ‰˜ç›˜æŒ‡é’ˆ
 	std::shared_ptr<QSystemTrayIcon> m_systemTray;
-	//ÍĞÅÌ²Ëµ¥
+	//æ‰˜ç›˜èœå•
 	std::shared_ptr <QMenu> m_menu;
-	//ÍĞÅÌÍË³ö
+	//æ‰˜ç›˜é€€å‡º
 	std::shared_ptr<QAction> m_menu_exit;
-	//ÍĞÅÌÔİÍ£
+	//æ‰˜ç›˜æš‚åœ
 	std::shared_ptr<QAction> m_menu_pause;
-	//ÍĞÅÌ²¥·Å
+	//æ‰˜ç›˜æ’­æ”¾
 	std::shared_ptr<QAction> m_menu_playing;
 protected:
 	void mouseMoveEvent(QMouseEvent* event);

@@ -19,9 +19,9 @@
 *└────────────────────────────────────────────────┘
 */
 
-CString  tool::QSTOCS(QString qs)
+std::wstring tool::QSTOCS(QString qs)
 {
-	return  qs.toStdString().c_str();
+	return  qs.toStdWString();
 }
 
 /*
@@ -59,11 +59,11 @@ QString tool::GetSystemUserName()
 
 QString tool::GetSystemWallpaperPath()
 {
-	HDC hDC = ::GetDC(HWND(NULL));               // 得到屏幕DC  
-	int x = ::GetDeviceCaps(hDC, HORZRES);       // 宽  
-	int y = ::GetDeviceCaps(hDC, VERTRES);        // 高   
-	::ReleaseDC(HWND(NULL), hDC);                  // 释放DC
-	return QString("C:\\Users\\") + tool::GetSystemUserName() + "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\CachedFiles\\CachedImage_" + std::to_string(x).c_str() + "_" + std::to_string(y).c_str() + "_POS4.jpg";
+	QString pathBase = QString("C:\\Users\\") + tool::GetSystemUserName() + "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\CachedFiles\\";
+	QDir dir(pathBase);
+	QStringList nameFilters;
+	nameFilters << "*.jpg" << "*.JPG";
+	return pathBase + dir.entryList(nameFilters)[0];
 }
 
 /*
