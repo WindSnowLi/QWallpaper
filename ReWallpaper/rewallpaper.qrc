@@ -21,5 +21,7 @@
     <qresource prefix="/glsl">
         <file>Resources/glsl/draw.frag</file>
         <file>Resources/glsl/draw.vert</file>
+        <file>Resources/glsl/render.frag</file>
+        <file>Resources/glsl/render.vert</file>
     </qresource>
 </RCC>

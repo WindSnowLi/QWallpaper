@@ -37,7 +37,9 @@ public:
 
 	static unsigned int TextureFromFile(const char* path, const std::string& directory, QExpandOpenGLWidget* m_parent);
 
-	unsigned int loadTexture(const char* path);
+	std::tuple<GLuint, int, int, GLenum> loadTexture(const char* path);
+
+	unsigned int loadFramebufferTexture2D(GLuint texture, int width, int heigth, GLenum type);
 };
 
 class QExpandOpenGLWidget::Shader {

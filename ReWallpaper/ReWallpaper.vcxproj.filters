@@ -116,5 +116,11 @@
     <None Include="Resources\glsl\draw.frag">
       <Filter>Resource Files\glsl</Filter>
     </None>
+    <None Include="Resources\glsl\render.frag">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
+    <None Include="Resources\glsl\render.vert">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

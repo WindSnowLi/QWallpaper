@@ -43,7 +43,9 @@ void QExpandOpenGLWidget::resizeGL(int w, int h) {
 	glViewport(0, 0, w, h);
 }
 
-unsigned int QExpandOpenGLWidget::loadTexture(char const* path)
+
+
+std::tuple<GLuint, int, int, GLenum> QExpandOpenGLWidget::loadTexture(char const* path)
 {
 	stbi_set_flip_vertically_on_load(true);
 	unsigned int textureID;
@@ -51,9 +53,9 @@ unsigned int QExpandOpenGLWidget::loadTexture(char const* path)
 
 	int width, height, nrComponents;
 	unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
+	GLenum format{};
 	if (data)
 	{
-		GLenum format{};
 		if (nrComponents == 1)
 			format = GL_RED;
 		else if (nrComponents == 3)
@@ -78,7 +80,26 @@ unsigned int QExpandOpenGLWidget::loadTexture(char const* path)
 		stbi_image_free(data);
 	}
 
-	return textureID;
+	return { textureID, width, height, format };
+}
+
+unsigned int QExpandOpenGLWidget::loadFramebufferTexture2D(GLuint texture, int w, int h, GLenum type)
+{
+	unsigned int fb;
+	glGenFramebuffers(1, &fb);
+	glBindFramebuffer(GL_FRAMEBUFFER, fb);
+	glGenTextures(1, &texture);
+
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);//this setting let ripple bound from edge
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F_ARB, w, h, 0, type, GL_FLOAT, NULL);
+	//here we use type GL_FLOAT to save the water height and velocity
+
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+	return fb;
 }
 
 void QExpandOpenGLWidget::Shader::readShaderFile(const char* vertexPath, const char* fragmentPath) {

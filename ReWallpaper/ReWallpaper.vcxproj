@@ -154,6 +154,8 @@
   <ItemGroup>
     <None Include="Resources\glsl\draw.frag" />
     <None Include="Resources\glsl\draw.vert" />
+    <None Include="Resources\glsl\render.frag" />
+    <None Include="Resources\glsl\render.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
