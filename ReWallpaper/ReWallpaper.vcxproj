@@ -154,6 +154,8 @@
   <ItemGroup>
     <None Include="Resources\glsl\draw.frag" />
     <None Include="Resources\glsl\draw.vert" />
+    <None Include="Resources\glsl\drop.frag" />
+    <None Include="Resources\glsl\drop.vert" />
     <None Include="Resources\glsl\render.frag" />
     <None Include="Resources\glsl\render.vert" />
   </ItemGroup>

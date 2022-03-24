@@ -39,7 +39,7 @@ public:
 
 	std::tuple<GLuint, int, int, GLenum> loadTexture(const char* path);
 
-	unsigned int loadFramebufferTexture2D(GLuint texture, int width, int heigth, GLenum type);
+	std::tuple<GLuint, GLuint> loadFramebufferTexture2D(int width, int heigth, GLenum type);
 };
 
 class QExpandOpenGLWidget::Shader {

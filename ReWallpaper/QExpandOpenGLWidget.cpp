@@ -83,11 +83,13 @@ std::tuple<GLuint, int, int, GLenum> QExpandOpenGLWidget::loadTexture(char const
 	return { textureID, width, height, format };
 }
 
-unsigned int QExpandOpenGLWidget::loadFramebufferTexture2D(GLuint texture, int w, int h, GLenum type)
+std::tuple<GLuint, GLuint> QExpandOpenGLWidget::loadFramebufferTexture2D(int w, int h, GLenum type)
 {
 	unsigned int fb;
 	glGenFramebuffers(1, &fb);
 	glBindFramebuffer(GL_FRAMEBUFFER, fb);
+
+	GLuint texture;
 	glGenTextures(1, &texture);
 
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -95,11 +97,11 @@ unsigned int QExpandOpenGLWidget::loadFramebufferTexture2D(GLuint texture, int w
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);//this setting let ripple bound from edge
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F_ARB, w, h, 0, type, GL_FLOAT, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, type, GL_FLOAT, NULL);
 	//here we use type GL_FLOAT to save the water height and velocity
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
-	return fb;
+	return { fb,texture };
 }
 
 void QExpandOpenGLWidget::Shader::readShaderFile(const char* vertexPath, const char* fragmentPath) {

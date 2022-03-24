@@ -122,5 +122,11 @@
     <None Include="Resources\glsl\render.vert">
       <Filter>Resource Files\glsl</Filter>
     </None>
+    <None Include="Resources\glsl\drop.frag">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
+    <None Include="Resources\glsl\drop.vert">
+      <Filter>Resource Files\glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>
