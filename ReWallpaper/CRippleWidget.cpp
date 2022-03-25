@@ -4,6 +4,7 @@
 void CRippleWidget::initializeGL()
 {
 	this->initializeOpenGLFunctions();
+	this->resize(2560, 1440);
 	imgShader = std::make_shared<Shader>(this);
 	renderShader = std::make_shared<Shader>(this);
 	dropShader = std::make_shared<Shader>(this);
@@ -35,20 +36,16 @@ void CRippleWidget::initializeGL()
 	fb1 = loadFramebufferTexture2D(this->width(), this->height(), std::get<3>(imgTex));
 	fb2 = loadFramebufferTexture2D(this->width(), this->height(), std::get<3>(imgTex));
 
-	glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	transform = glm::scale(transform, glm::vec3(2.0, 2.0, 2.0));
 
 	imgShader->setInt("img", 0);
 	imgShader->setInt("ripple", 1);
-	imgShader->setMat4("transform", transform);
 
 	renderShader->use();
 	renderShader->setInt("currentRipple", 0);
 	renderShader->setInt("ripple", 1);
 
 	dropShader->use();
-	dropShader->setInt("ripple", 0);
-	dropShader->setMat4("transform", transform);
+	dropShader->setInt("img", 0);
 }
 
 void CRippleWidget::resizeGL(int w, int h)
@@ -59,15 +56,17 @@ void CRippleWidget::resizeGL(int w, int h)
 void CRippleWidget::paintGL()
 {
 	drop();
-
+	render();
 	glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebufferObject());
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	imgShader->use();
+	glm::mat4 transform = glm::mat4(1.0f);
+	transform = glm::scale(transform, glm::vec3(2.0, 2.0, 2.0));
+	imgShader->setMat4("transform", transform);
+
 	glBindVertexArray(imgVAO);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, std::get<1>(fb1));
+	glBindTexture(GL_TEXTURE_2D, img);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, std::get<1>(fb1));
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -79,6 +78,26 @@ void CRippleWidget::paintGL()
 
 void CRippleWidget::render()
 {
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+	glBindFramebuffer(GL_FRAMEBUFFER, std::get<0>(fb1));
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	renderShader->use();
+	glm::mat4 transform = glm::mat4(1.0f);
+	transform = glm::scale(transform, glm::vec3(2.0, 2.0, 2.0));
+	renderShader->setMat4("transform", transform);
+	glBindVertexArray(imgVAO);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, std::get<1>(fb1));
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, std::get<1>(fb2));
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	auto ft = fb1;
+	fb1 = fb2;
+	fb2 = ft;
 }
 
 void CRippleWidget::drop()
@@ -87,16 +106,17 @@ void CRippleWidget::drop()
 	glBindFramebuffer(GL_FRAMEBUFFER, std::get<0>(fb1));
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	dropShader->use();
+	glm::mat4 transform = glm::mat4(1.0f);
+	transform = glm::scale(transform, glm::vec3(2.0, 2.0, 2.0));
+	dropShader->setMat4("transform", transform);
 	glBindVertexArray(imgVAO);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, img);
+	glBindTexture(GL_TEXTURE_2D, std::get<1>(fb1));
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	//auto ft = fb1;
-	//fb1 = fb2;
-	//fb2 = ft;
 }
 
 CRippleWidget::CRippleWidget(QWidget* parent) :QExpandOpenGLWidget(parent)

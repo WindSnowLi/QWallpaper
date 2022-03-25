@@ -9,7 +9,10 @@ int main(int argc, char *argv[])
 {
 	SingleApplication app(argc, argv);
 	CRippleWidget c;
+	//设置无边框
+	//c.setWindowFlags(Qt::FramelessWindowHint);
 	c.show();
+
 	return app.exec();
     if (!app.isRunning())
     {

@@ -12,5 +12,5 @@ void main(){
     ) / 2 - texture(rippleBuff, point).r;
     float mid = avg - avg/32;
 
-    gl_FragColor = vec4(0.5,0,0,0);
+    gl_FragColor = vec4(mid,0,0,0);
 };
